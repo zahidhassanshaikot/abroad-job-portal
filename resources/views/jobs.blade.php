@@ -200,19 +200,22 @@
 					<h5>Showing 1 to 10 job</h5>
 				</div>
 			</div>
+@foreach ($obj_jobs as $job)
+	
+
 			<div class="col-sm-12 col-md-6 col-lg-6">
 				<article class="job-list">
 					<div class="job-details">
 						<div class="company-logo">
-							<img src="{{asset('design')}}/img/logo1.png" alt="">
+						<img src="{{ asset($job->logo) }}" alt="">
 						</div>
-						<h4 class="post-name"><a href="#">Service Representative</a></h4>
+						<h4 class="post-name"><a href="{{ route('job-details',['id'=>$job->id]) }}">{{ $job->job_title }}</a></h4>
 						<div class="salary">
-							<p>Salary: <span class="amount">16k-20k</span></p>
+							<p>Salary: <span class="amount">{{ $job->salary }}</span></p>
 						</div>
 						<div class="job-info">
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure, ad unde assumenda esse. Dicta accusamus fuga tenetur hic aspernatur reprehenderit.</p>
-							<a href="{{ route('job-details') }}">See More...</a>
+							<p>{{ $job->description }}</p>
+							<a href="{{ route('job-details',['id'=>$job->id]) }}">See More...</a>
 						</div>
 						<div class="apply-btn">
 							<a href="#">Apply Job</a>
@@ -220,101 +223,20 @@
 					</div>
 					<div class="post-meta">
 						<ul>
-							<li><p><i class="fas fa-map-marker-alt"></i> Dhaka</p></li>
-							<li><p><i class="fas fa-calendar-alt"></i> Dec 14, 2018</p></li>
-							<li><p><i class="far fa-clock"></i> Full Time </p></li>
-							<li><p><i class="far fa-clock"></i> 2 Days Left </p></li>
+							<li><p><i class="fas fa-map-marker-alt"></i> {{ $job->location }}</p></li>
+							<li><p><i class="fas fa-calendar-alt"></i> {{ $job->created_at }}</p></li>
+							<li><p><i class="far fa-clock"></i> {{ $job->job_type }} </p></li>
+							<li><p><i class="far fa-clock"></i> {{ $job->last_date }} </p></li>
 						</ul>
 					</div>
 				</article>
 			</div>
-			<div class="col-sm-12 col-md-6 col-lg-6">
-				<article class="job-list">
-					<div class="job-details">
-						<div class="company-logo">
-							<img src="{{asset('design')}}/img/logo2.png" alt="">
-						</div>
-						<h4 class="post-name"><a href="#">Production Technician</a></h4>
-						<div class="salary">
-							<p>Salary: <span class="amount">Negotiable</span></p>
-						</div>
-						<div class="job-info">
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure, ad unde assumenda esse. Dicta accusamus fuga tenetur hic aspernatur reprehenderit.</p>
-							<a href="{{ route('job-details') }}">See More...</a>
-						</div>
-						<div class="apply-btn">
-							<a href="#">Apply Job</a>
-						</div>
-					</div>
-					<div class="post-meta">
-						<ul>
-							<li><p><i class="fas fa-map-marker-alt"></i> Cumilla</p></li>
-							<li><p><i class="fas fa-calendar-alt"></i> November 14, 2018</p></li>
-							<li><p><i class="far fa-clock"></i> Full Time </p></li>
-							<li><p><i class="far fa-clock"></i> 10 Days Left </p></li>
-						</ul>
-					</div>
-				</article>
-			</div>
-			<div class="col-sm-12 col-md-6 col-lg-6">
-				<article class="job-list">
-					<div class="job-details">
-						<div class="company-logo">
-							<img src="{{asset('design')}}/img/logo3.png" alt="">
-						</div>
-						<h4 class="post-name"><a href="#">Operator (ETP)</a></h4>
-						<div class="salary">
-							<p>Salary: <span class="amount">15k</span></p>
-						</div>
-						<div class="job-info">
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure, ad unde assumenda esse. Dicta accusamus fuga tenetur hic aspernatur reprehenderit.</p>
-							<a href="{{ route('job-details') }}">See More...</a>
-						</div>
-						<div class="apply-btn">
-							<a href="#">Apply Job</a>
-						</div>
-					</div>
-					<div class="post-meta">
-						<ul>
-							<li><p><i class="fas fa-map-marker-alt"></i> Dhaka</p></li>
-							<li><p><i class="fas fa-calendar-alt"></i> Dec 20, 2018</p></li>
-							<li><p><i class="far fa-clock"></i> Part Time </p></li>
-							<li><p><i class="far fa-clock"></i> 10 Days Left </p></li>
-						</ul>
-					</div>
-				</article>
-			</div>
-			<div class="col-sm-12 col-md-6 col-lg-6">
-				<article class="job-list">
-					<div class="job-details">
-						<div class="company-logo">
-							<img src="{{asset('design')}}/img/logo1.png" alt="">
-						</div>
-						<h4 class="post-name"><a href="#">General Manager</a></h4>
-						<div class="salary">
-							<p>Salary: <span class="amount">Negotiabal</span></p>
-						</div>
-						<div class="job-info">
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure, ad unde assumenda esse. Dicta accusamus fuga tenetur hic aspernatur reprehenderit.</p>
-							<a href="{{ route('job-details') }}">See More...</a>
-						</div>
-						<div class="apply-btn">
-							<a href="#">Apply Job</a>
-						</div>
-					</div>
-					<div class="post-meta">
-						<ul>
-							<li><p><i class="fas fa-map-marker-alt"></i> Chittagong</p></li>
-							<li><p><i class="fas fa-calendar-alt"></i> Dec 25, 2018</p></li>
-							<li><p><i class="far fa-clock"></i> Full Time </p></li>
-							<li><p><i class="far fa-clock"></i> 5 Days Left </p></li>
-						</ul>
-					</div>
-				</article>
-			</div>
+@endforeach
+		
 			<div class="col-sm-12 col-md-12 col-lg-12">
 				<div class="pagination">
-					<ul>
+					{{ $obj_jobs->links() }}
+					{{-- <ul>
 						<li><a href="#"><i class="fas fa-angle-left"></i></a></li>
 						<li><a href="#">1</a></li>
 						<li><a href="#">2</a></li>
@@ -328,7 +250,7 @@
 						<li><a href="#">9</a></li>
 						<li><a href="#">10</a></li>
 						<li><a href="#"><i class="fas fa-angle-right"></i></a></li>
-					</ul>
+					</ul> --}}
 				</div>
 			</div>
 		</div>

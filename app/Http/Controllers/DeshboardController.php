@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\CompanyProfile;
+use App\JobPost;
 use Carbon\Carbon;
 use App\Role;
 use App\User;
@@ -21,10 +22,23 @@ class DeshboardController extends Controller
         return view('index');
     }
     public function jobs(){
-        return view('jobs');
+
+        $obj_jobs=JobPost::join('company_profile','company_profile.user_id','=','job_posts.user_id')
+        ->orderBy('id','DESC')
+        ->select('job_posts.*','company_profile.logo')
+        ->paginate(10);
+        // return $obj_jobs;
+        return view('jobs',[
+            'obj_jobs'=>$obj_jobs,
+            ]);
     }
-    public function jobDetails(){
-        return view('job-details');
+    public function jobDetails($id){
+        $obj_jobs=JobPost::join('company_profile','company_profile.user_id','=','job_posts.user_id')
+        ->where('job_posts.id',$id)
+        ->select('job_posts.*','company_profile.logo','company_profile.company_name','company_profile.website','company_profile.address')
+        ->first();
+        // return $obj_jobs;
+        return view('job-details',['obj_jobs'=>$obj_jobs]);
     }
     public function dashboard(){
         return view('dashboard');

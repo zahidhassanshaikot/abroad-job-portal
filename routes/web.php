@@ -16,7 +16,7 @@ Route::post('save-user-info', 'DeshboardController@saveUserInfo')->name('save-us
 
 Route::get('/', 'DeshboardController@index')->name('/');
 Route::get('/jobs', 'DeshboardController@jobs')->name('jobs');
-Route::get('/job-details', 'DeshboardController@jobDetails')->name('job-details');
+Route::get('/job-details/{id}', 'DeshboardController@jobDetails')->name('job-details');
 Route::get('/dashboard', 'DeshboardController@dashboard')->name('dashboard');
 Route::get('/login-job-seeker', 'DeshboardController@loginJobSeeker')->name('login-job-seeker');
 Route::get('/company-login', 'DeshboardController@companyLogin')->name('company-login');
@@ -33,6 +33,7 @@ Route::group(['middleware' => 'role:Employer Seeker'], function () {
         Route::get('company-profile', 'CompanyController@companyProfile')->name('company-profile');
         Route::post('save-company-profile-info', 'CompanyController@saveCompanyProfileInfo')->name('save-company-profile-info');
         Route::get('post-job', 'CompanyController@postJob')->name('post-job');
+        Route::post('post-new-job', 'CompanyController@postNewJob')->name('post-new-job');
             
 });
 Route::get('job-seeker-dashboard', 'JobSeekerController@jobSeekerDashboard')->name('job-seeker-dashboard');

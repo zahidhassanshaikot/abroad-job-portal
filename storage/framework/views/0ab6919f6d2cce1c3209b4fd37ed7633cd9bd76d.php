@@ -154,39 +154,39 @@
 							<div class="job-short-detail">	
 								<dl class="row">
 									<dt class="col-md-4">Job Title</dt>
-									<dd class="col-md-8">Service Representative</dd>
+								<dd class="col-md-8"><?php echo e($obj_jobs->job_title); ?></dd>
 								</dl>	
 								<dl class="row">
 									<dt class="col-md-4">Job Type</dt>
-									<dd class="col-md-8">Full Time</dd>
+									<dd class="col-md-8"><?php echo e($obj_jobs->job_type); ?></dd>
 								</dl>	
 								<dl class="row">
 									<dt class="col-md-4">Job Experience</dt>
-									<dd class="col-md-8">2 Years</dd>
+									<dd class="col-md-8"><?php echo e($obj_jobs->exp); ?></dd>
 								</dl>	
 								<dl class="row">
 									<dt class="col-md-4">Gender</dt>
-									<dd class="col-md-8">Male</dd>
+									<dd class="col-md-8"><?php echo e($obj_jobs->gender); ?></dd>
 								</dl>	
 								<dl class="row">
 									<dt class="col-md-4">Post On</dt>
-									<dd class="col-md-8">12 Dec, 2018</dd>
+									<dd class="col-md-8"><?php echo e($obj_jobs->created_at); ?></dd>
 								</dl>	
 								<dl class="row">
 									<dt class="col-md-4">Last Date</dt>
-									<dd class="col-md-8">12 January, 2019</dd>
+									<dd class="col-md-8"><?php echo e($obj_jobs->last_date); ?></dd>
 								</dl>	
 								<dl class="row">
 									<dt class="col-md-4">No. of Vecancies</dt>
-									<dd class="col-md-8">10</dd>
+									<dd class="col-md-8"><?php echo e($obj_jobs->no_of_vacancies); ?></dd>
 								</dl>	
 								<dl class="row">
 									<dt class="col-md-4">Location</dt>
-									<dd class="col-md-8">Dhaka</dd>
+									<dd class="col-md-8"><?php echo e($obj_jobs->location); ?></dd>
 								</dl>	
 								<dl class="row">
 									<dt class="col-md-4">Salary</dt>
-									<dd class="col-md-8">30K</dd>
+									<dd class="col-md-8"><?php echo e($obj_jobs->salary); ?></dd>
 								</dl>
 							</div>
 				</div>
@@ -206,15 +206,15 @@
 								<tbody>
 									<tr>
 										<th>Name: </th>
-										<td>Pathao</td>
+										<td><?php echo e($obj_jobs->company_name); ?></td>
 									</tr>
 									<tr>
 										<th>Website: </th>
-										<td><a href="https://pathao.com/">pathao.com</a></td>
+										<td><a href="<?php echo e($obj_jobs->website); ?>"><?php echo e($obj_jobs->website); ?></a></td>
 									</tr>
 									<tr>
 										<th>Address: </th>
-										<td>Dhaka</td>
+										<td><?php echo e($obj_jobs->address); ?></td>
 									</tr>
 								</tbody>
 							</table>
@@ -227,12 +227,8 @@
 						<h2>Job Description</h2>
 					</div>
 					<div class="descriptions">
-						<ul>
-							<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit explicabo culpa excepturi, ut ea ex consequatur, nemo assumenda perferendis voluptate!</li>
-							<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit explicabo culpa excepturi, ut ea ex consequatur, nemo assumenda perferendis voluptate!</li>
-							<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit explicabo culpa excepturi, ut ea ex consequatur, nemo assumenda perferendis voluptate!</li>
-							<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit explicabo culpa excepturi, ut ea ex consequatur, nemo assumenda perferendis voluptate!</li>
-						</ul>
+							<?php echo e($obj_jobs->description); ?>
+
 					</div>
 				</div>
 				<div class="col-sm-12 col-md-12 col-lg-12">
@@ -240,12 +236,8 @@
 						<h2>Additional requirements</h2>
 					</div>
 					<div class="descriptions">
-						<ul>
-							<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit explicabo culpa excepturi, ut ea ex consequatur, nemo assumenda perferendis voluptate!</li>
-							<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit explicabo culpa excepturi, ut ea ex consequatur, nemo assumenda perferendis voluptate!</li>
-							<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit explicabo culpa excepturi, ut ea ex consequatur, nemo assumenda perferendis voluptate!</li>
-							<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit explicabo culpa excepturi, ut ea ex consequatur, nemo assumenda perferendis voluptate!</li>
-						</ul>
+							<?php echo e($obj_jobs->additional_requirements); ?>
+
 					</div>
 				</div>
 				<div class="col-sm-12 col-md-12 col-lg-12">
@@ -253,12 +245,8 @@
 						<h2>Extra Facilites</h2>
 					</div>
 					<div class="descriptions">
-						<ul>
-							<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit explicabo culpa excepturi, ut ea ex consequatur, nemo assumenda perferendis voluptate!</li>
-							<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit explicabo culpa excepturi, ut ea ex consequatur, nemo assumenda perferendis voluptate!</li>
-							<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit explicabo culpa excepturi, ut ea ex consequatur, nemo assumenda perferendis voluptate!</li>
-							<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit explicabo culpa excepturi, ut ea ex consequatur, nemo assumenda perferendis voluptate!</li>
-						</ul>
+							<?php echo e($obj_jobs->extra_facilites); ?>
+
 					</div>
 				</div>
 				<div class="col-sm-12 col-md-12 col-lg-12">
@@ -266,12 +254,8 @@
 						<h2>Educational Requirement</h2>
 					</div>
 					<div class="descriptions">
-						<ul>
-							<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit explicabo culpa excepturi, ut ea ex consequatur, nemo assumenda perferendis voluptate!</li>
-							<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit explicabo culpa excepturi, ut ea ex consequatur, nemo assumenda perferendis voluptate!</li>
-							<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit explicabo culpa excepturi, ut ea ex consequatur, nemo assumenda perferendis voluptate!</li>
-							<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit explicabo culpa excepturi, ut ea ex consequatur, nemo assumenda perferendis voluptate!</li>
-						</ul>
+							<?php echo e($obj_jobs->edu_req); ?>
+
 					</div>
 				</div>
 			</div>

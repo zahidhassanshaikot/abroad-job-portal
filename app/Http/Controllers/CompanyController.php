@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\CompanyProfile;
+use App\JobPost;
 use App\Role;
 use App\User;
 use DB;
@@ -97,5 +98,33 @@ class CompanyController extends Controller
     }
     public function postJob(){
         return view('employee-and-admin-post-job');
+    }
+    public function postNewJob(Request $request){
+        $this->validate($request, [
+            'job_title' => 'required',
+            'job_type' => 'required',
+            'description' => 'required',
+            'gender' => 'required',
+
+        ]);
+        $user_id=Auth::user()->id;
+  
+        $obj_jobPost=new JobPost();
+        $obj_jobPost->job_title=$request->job_title;
+        $obj_jobPost->job_type=$request->job_type;
+        $obj_jobPost->description=$request->description;
+        $obj_jobPost->exp=$request->exp;
+        $obj_jobPost->gender=$request->gender;
+        $obj_jobPost->extra_facilites=$request->extra_facilites;
+        $obj_jobPost->last_date=$request->last_date;
+        $obj_jobPost->no_of_vacancies=$request->no_of_vacancies;
+        $obj_jobPost->location=$request->location;
+        $obj_jobPost->salary=$request->salary;
+        $obj_jobPost->additional_requirements=$request->additional_requirements;
+        $obj_jobPost->edu_req=$request->edu_req;
+        $obj_jobPost->user_id=$user_id;
+        $obj_jobPost->save();
+
+        return redirect()->back()->with('message','Save successfuly');
     }
 }
