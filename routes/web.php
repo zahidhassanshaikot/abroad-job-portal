@@ -36,10 +36,12 @@ Route::group(['middleware' => 'role:Employer Seeker'], function () {
         Route::post('post-new-job', 'CompanyController@postNewJob')->name('post-new-job');
             
 });
-Route::get('job-seeker-dashboard', 'JobSeekerController@jobSeekerDashboard')->name('job-seeker-dashboard');
-          
+ 
 Route::group(['middleware' => 'role:Job Seeker'], function () {
-
+        Route::get('job-seeker-dashboard', 'JobSeekerController@jobSeekerDashboard')->name('job-seeker-dashboard');
+        Route::get('job-seeker-profile', 'JobSeekerController@jobSeekerProfile')->name('job-seeker-profile');
+        Route::post('save-job-seeker-profile-info', 'JobSeekerController@saveJobSeekerProfileInfo')->name('save-job-seeker-profile-info');
+                 
        
 });
 

@@ -123,6 +123,7 @@
                             <option @if(!empty($obj_company)) @if($obj_company->districts=='Narayanganj') selected="selected" @endif @endif  value="Narayanganj">Narayanganj</option>
                             <option @if(!empty($obj_company)) @if($obj_company->districts=='Rangpur') selected="selected" @endif @endif  value="Rangpur">Rangpur</option>
                             <option @if(!empty($obj_company)) @if($obj_company->districts=='Mymensingh') selected="selected" @endif @endif  value="Mymensingh">Mymensingh</option>
+                            
                             {{-- <option value="157">Barisal</option>
                             <option value="158">Tungi</option>
                             <option value="159">Jessore</option>

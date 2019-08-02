@@ -141,13 +141,18 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <img src="{{asset('design')}}/images/avatar/1.jpg" class="rounded-circle float-left mr-2" alt="User Image">
             <span class="status"></span>
-            <h4 class="name">Jonathon Doe</h4>
+          <h4 class="name">{{ Auth::user()->lname}}</h4>
           </a>
           <ul class="dropdown-menu">
             <li><a href="#"><i class="fa fa-user"></i> My Profile</a></li>
-            <li><a href="#"><i class="fa fa-envelope"></i> Inbox</a></li>
-            <li><a href="#"><i class="fa fa-gears"></i> Account Setting</a></li>
-            <li><a href="#"><i class="fa fa-power-off"></i> Logout</a></li>
+            {{-- <li><a href="#"><i class="fa fa-envelope"></i> Inbox</a></li>
+            <li><a href="#"><i class="fa fa-gears"></i> Account Setting</a></li> --}}
+            <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
+              document.getElementById('logout-form').submit();"><i class="fa fa-power-off"></i> Logout</a></li>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+                </form>
           </ul>
         </div>
 

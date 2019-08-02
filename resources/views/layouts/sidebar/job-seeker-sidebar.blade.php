@@ -10,7 +10,7 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="job-seeker-profile.php">
+            <a class="nav-link" href="{{ route('job-seeker-profile')}}">
               <i class="fa fa-user"></i> <span class="menu-title">Profile</span>
             </a>
           </li>
@@ -21,11 +21,7 @@
             </a>
           </li>
 
-          <li class="nav-item">
-            <a class="nav-link" href="index.php" role="button">
-              <i class="fa fa-power-off"></i> <span class="menu-title">Logout</span>
-            </a>
-          </li>
+       
         </ul>
       </nav>
     </aside><!-- /.left-panel -->

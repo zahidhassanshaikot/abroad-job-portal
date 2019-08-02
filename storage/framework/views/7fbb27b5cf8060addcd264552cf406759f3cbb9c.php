@@ -52,7 +52,6 @@
             </div>
             <div class="login-form">
             <form action="<?php echo e(route('login')); ?>" method="POST">
-              
 <?php echo csrf_field(); ?>
                 <div class="form-group">
                   <lSource Sans Pro>Email address</lSource Sans Pro>

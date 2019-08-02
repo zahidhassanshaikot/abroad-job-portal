@@ -6,10 +6,10 @@
   <title>Job Seeker Profile</title>
 
 
-    <?php include 'header/dashboard-header.php'; ?>
 
-    <?php include 'sidebar/job-seeker-sidebar.php'; ?>
-
+    <?php echo $__env->make('layouts/header/dashboard-header', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <?php echo $__env->make('layouts/sidebar/job-seeker-sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+  
     <div class="dashboard-contents">
       <div class="contents-inner">
         <div class="row">
@@ -18,12 +18,12 @@
             <div class="section-content profile-dashboard">
               <div class="content-head">
                 <div class="profile-image">
-                  <img src="img/profile.jpg" alt="profile">
+                  <img src="<?php echo e(asset('design')); ?>/img/profile.jpg" alt="profile">
                   <span><a href="#">Change Profile</a></span>
                 </div>
                 <div class="profile-info">
-                  <h2 class="name">John Deo</h2>
-                  <h5 class="email">John@gmail.com</h5>
+                <h2 class="name"><?php echo e(Auth::user()->fname); ?> <?php echo e(Auth::user()->lname); ?></h2>
+                  <h5 class="email"><?php echo e(Auth::user()->email); ?></h5>
                 </div>
               </div>
 
@@ -40,23 +40,23 @@
                             <tbody>
                               <tr>
                                 <td>Email Address</td>
-                                <td>john@gmail.com</td>
+                                <td><?php echo e(Auth::user()->email); ?></td>
                               </tr>
                               <tr>
                                 <td>Fisrt Name</td>
-                                <td>John</td>
+                                <td><?php echo e(Auth::user()->fname); ?></td>
                               </tr>
                               <tr>
                                 <td>Last Name</td>
-                                <td>Deo</td>
+                                <td><?php echo e(Auth::user()->lname); ?></td>
                               </tr>
                               <tr>
                                 <td>Phone</td>
-                                <td>012545</td>
+                                <td><?php echo e($seeker_profile->contact_no); ?></td>
                               </tr>
                               <tr>
                                 <td>Nationality</td>
-                                <td>Bangladeshi</td>
+                                <td><?php echo e($seeker_profile->nationality); ?></td>
                               </tr>
                             </tbody>
                           </table>
@@ -93,14 +93,15 @@
         </div>
       </div><!-- /.contents-inner -->
 
-      <?php include 'footer/footer.php'; ?>
+      <?php echo $__env->make('layouts/footer/footer', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
 
 
-  <script src="assets/js/jquery-3.2.1.slim.min.js"></script>
-  <script src="assets/js/plugins.js"></script>
-  <script src="assets/js/forms/chosen.jquery.min.js"></script>
-  <script src="assets/js/main.js"></script>
+      <script src="<?php echo e(asset('design')); ?>/assets/js/jquery-3.2.1.slim.min.js"></script>
+      <script src="<?php echo e(asset('design')); ?>/assets/js/plugins.js"></script>
+      <script src="<?php echo e(asset('design')); ?>/assets/js/forms/chosen.jquery.min.js"></script>
+      <script src="<?php echo e(asset('design')); ?>/assets/js/main.js"></script>
+    
 
   <script>
     jQuery(document).ready(function() {

@@ -41,11 +41,7 @@
             </a>
           </li>
 
-          <li class="nav-item dropdown">
-            <a class="nav-link" href="index.php" role="button">
-              <i class="fa fa-power-off"></i> <span class="menu-title">Logout</span>
-            </a>
-          </li>
+       
 
         </ul>
       </nav>
