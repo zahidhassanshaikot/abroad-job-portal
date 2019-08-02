@@ -6,9 +6,8 @@
   <title>Employee and Admin Post Job Page</title>
 
 
-    <?php include 'header/dashboard-header.php'; ?>
-
-    <?php include 'sidebar/sidebar.php'; ?>
+  <?php echo $__env->make('layouts/header/dashboard-header', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+  <?php echo $__env->make('layouts/sidebar/sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
     <div class="dashboard-contents">
       <div class="contents-inner">
@@ -71,9 +70,9 @@
                       </div>
                       <div class="col-md-6">
                         <div class="form-group profile-form">
-                          <label class="form-control-label">Post Date</label>
+                          <label class="form-control-label">Extra Facilites</label>
                           <div class="input-group">
-                            <input class="form-control" type="date" placeholder="Address">
+                            <input class="form-control" type="text" placeholder="Extra Facilites">
                           </div>
                         </div>
                       </div>
@@ -131,14 +130,14 @@
         </div>
       </div><!-- /.contents-inner -->
 
-      <?php include 'footer/footer.php'; ?>
+      <?php echo $__env->make('layouts/footer/footer', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
 
 
-  <script src="assets/js/jquery-3.2.1.slim.min.js"></script>
-  <script src="assets/js/plugins.js"></script>
-  <script src="assets/js/forms/chosen.jquery.min.js"></script>
-  <script src="assets/js/main.js"></script>
+  <script src="<?php echo e(asset('design')); ?>/assets/js/jquery-3.2.1.slim.min.js"></script>
+  <script src="<?php echo e(asset('design')); ?>/assets/js/plugins.js"></script>
+  <script src="<?php echo e(asset('design')); ?>/assets/js/forms/chosen.jquery.min.js"></script>
+  <script src="<?php echo e(asset('design')); ?>/assets/js/main.js"></script>
 
   <script>
     jQuery(document).ready(function() {

@@ -19,7 +19,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="employee-and-admin-post-job.php">
+            <a class="nav-link" href="{{ route('post-job')}}">
               <i class="fa fa-plus-square"></i> <span class="menu-title">Post new job</span>
             </a>
           </li>
