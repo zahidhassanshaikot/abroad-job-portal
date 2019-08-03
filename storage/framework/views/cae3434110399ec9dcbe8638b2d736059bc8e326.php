@@ -56,8 +56,8 @@
                           <label class="form-control-label">Job Type</label>
                           <select class="form-control valid" id="companyType" name="job_type" aria-invalid="false">
                             <option value="">Select Type</option>
-                            <option value="L" selected="selected">Full Time</option>
-                            <option value="F">Part Time</option>
+                            <option value="Full Time" selected="selected">Full Time</option>
+                            <option value="Part Time">Part Time</option>
                           </select>
                         </div>
                       </div>

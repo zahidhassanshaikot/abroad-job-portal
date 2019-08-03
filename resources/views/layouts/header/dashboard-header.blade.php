@@ -35,7 +35,7 @@
 <body class="index-01">
   <header class="top-header media">
     <div class="top-left mr-3">
-      <a class="navbar-brand" href="index.php"><img src="{{asset('design')}}/images/logo.png" alt="Site Logo"></a><!-- /.navbar-brand -->
+    <a class="navbar-brand" href="{{ route('/') }}"><img src="{{asset('design')}}/images/logo.png" alt="Site Logo"></a><!-- /.navbar-brand -->
     </div><!-- /.top-left -->
 
     <div class="top-right media-body">
@@ -152,7 +152,7 @@
 
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf
-                </form>
+            </form>
           </ul>
         </div>
 

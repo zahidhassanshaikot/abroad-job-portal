@@ -18,7 +18,7 @@
             <div class="section-content profile-dashboard">
               <div class="content-head">
                 <div class="profile-image">
-                  <img src="{{asset('design')}}/img/profile.jpg" alt="profile">
+                  <img src="{{asset($seeker_profile->image)}}" alt="profile">
                   <span><a href="#">Change Profile</a></span>
                 </div>
                 <div class="profile-info">

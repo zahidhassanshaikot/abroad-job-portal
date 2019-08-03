@@ -144,6 +144,29 @@
 
 <section id="job-details">
 		<div class="container">
+
+			@if(Session::get('message'))
+				<div class="alert alert-success" id="message">
+					<h4 class=" text-center text-success"> {{ Session::get('message') }}</h4>
+				</div>
+			@endif
+			@if(Session::get('error_m'))
+				<div class="alert alert-danger" id="message">
+					<h4 class=" text-center text-danger"> {{ Session::get('error_m') }}</h4>
+				</div>
+			@endif
+			<div class=" card card-default">
+				@if ($errors->any())
+					<div class="alert alert-danger">
+						<ul>
+							@foreach ($errors->all() as $error)
+								<li>{{ $error }}</li>
+							@endforeach
+						</ul>
+					</div>
+				@endif
+
+
 			<div class="row">
 				<div class="col-sm-12 col-md-12 col-lg-12">
 					<div class="title-ab">
@@ -193,7 +216,7 @@
 				<div class="col-sm-12 col-md-12 col-lg-4">
 					<div class="details-sidebar">
 						<div class="apply-btn">
-							<a href="#"><i class="fas fa-upload"></i> Apply Now</a>
+							<a @if($obj_job_app == null) href="{{ route('applly-now',['id'=>$obj_jobs->id]) }}" @else href="#"@endif><i class="fas fa-upload"></i>@if($obj_job_app == null) Apply Now @else Applyed @endif </a>
 						</div>
 						<div class="save-btn">
 							<a href="#"><i class="fas fa-bookmark"></i> Save Job</a>

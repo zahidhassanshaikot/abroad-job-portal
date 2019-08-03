@@ -144,6 +144,29 @@
 
 <section id="job-details">
 		<div class="container">
+
+			<?php if(Session::get('message')): ?>
+				<div class="alert alert-success" id="message">
+					<h4 class=" text-center text-success"> <?php echo e(Session::get('message')); ?></h4>
+				</div>
+			<?php endif; ?>
+			<?php if(Session::get('error_m')): ?>
+				<div class="alert alert-danger" id="message">
+					<h4 class=" text-center text-danger"> <?php echo e(Session::get('error_m')); ?></h4>
+				</div>
+			<?php endif; ?>
+			<div class=" card card-default">
+				<?php if($errors->any()): ?>
+					<div class="alert alert-danger">
+						<ul>
+							<?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+								<li><?php echo e($error); ?></li>
+							<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+						</ul>
+					</div>
+				<?php endif; ?>
+
+
 			<div class="row">
 				<div class="col-sm-12 col-md-12 col-lg-12">
 					<div class="title-ab">
@@ -193,7 +216,7 @@
 				<div class="col-sm-12 col-md-12 col-lg-4">
 					<div class="details-sidebar">
 						<div class="apply-btn">
-							<a href="#"><i class="fas fa-upload"></i> Apply Now</a>
+							<a <?php if($obj_job_app == null): ?> href="<?php echo e(route('applly-now',['id'=>$obj_jobs->id])); ?>" <?php else: ?> href="#"<?php endif; ?>><i class="fas fa-upload"></i><?php if($obj_job_app == null): ?> Apply Now <?php else: ?> Applyed <?php endif; ?> </a>
 						</div>
 						<div class="save-btn">
 							<a href="#"><i class="fas fa-bookmark"></i> Save Job</a>

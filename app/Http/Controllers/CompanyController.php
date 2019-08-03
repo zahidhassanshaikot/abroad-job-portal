@@ -10,6 +10,8 @@ use File;
 use Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\JobApplication;
+use App\jobSeekerProfile;
 
 class CompanyController extends Controller
 {
@@ -126,5 +128,33 @@ class CompanyController extends Controller
         $obj_jobPost->save();
 
         return redirect()->back()->with('message','Save successfuly');
+    }
+
+    public function manageJobList($id){
+        $obj_jobPost=JobPost::where('user_id',$id)
+        ->get();
+
+        return view('manage-job-list',['obj_jobPost'=>$obj_jobPost]);
+
+    }
+    public function candidatesList($id){
+        $obj_jobPost=JobApplication::where('job_post_id',$id)
+        ->join('job_seeker_profile','job_seeker_profile.user_id','=','job_applications.user_id')
+        ->select('job_seeker_profile.*')
+        ->get();
+
+        // return $obj_jobPost;
+
+        return view('candidates-list',['obj_jobPost'=>$obj_jobPost]);
+
+    }
+    public function candidateProfile($id){
+ 
+        $seeker_profile=jobSeekerProfile::where('job_seeker_profile.id', $id)
+        ->join('users','users.id','=','job_seeker_profile.user_id')
+        ->select('job_seeker_profile.*','users.email')->first();
+
+        return view('candidate-profile',['seeker_profile'=>$seeker_profile]);
+        
     }
 }

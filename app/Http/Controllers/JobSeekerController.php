@@ -4,8 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\jobSeekerProfile;
+use App\Role;
+use App\User;
+use DB;
+use File;
+use Image;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Auth;
+use App\JobApplication;
 
 class JobSeekerController extends Controller
 {
@@ -38,6 +44,8 @@ class JobSeekerController extends Controller
         if(empty($seeker_profile)){
         $obj_seeker_profile=new jobSeekerProfile();
         $obj_seeker_profile->user_id=Auth::user()->id;
+        $obj_seeker_profile->fname=Auth::user()->fname;
+        $obj_seeker_profile->lname=Auth::user()->lname;
         $obj_seeker_profile->father_name=$request->father_name;
         $obj_seeker_profile->mother_name=$request->mother_name;
         $obj_seeker_profile->contact_no=$request->contact_no;
@@ -57,6 +65,20 @@ class JobSeekerController extends Controller
         $obj_seeker_profile->marital_status=$request->marital_status;
         $obj_seeker_profile->DOB=$request->DOB;
         $obj_seeker_profile->career_objective=$request->career_objective;
+
+        if ($request->file('image')) {
+            $this->validate($request, [
+                'image' => 'required|mimes:jpg,JPG,JPEG,jpeg,png|max:2048',
+            ]);
+           
+            $profilelogo = $request->file('image');
+            $fileType = $profilelogo->getClientOriginalExtension();
+            $imageName = date('YmdHis') . "image" . rand(1, 100) . '.' . $fileType;
+            $directory = 'images/';
+            $imageUrl = $directory . $imageName;
+            Image::make($profilelogo)->save($imageUrl);
+            $obj_seeker_profile->image = $imageUrl;
+        }
      
         $obj_seeker_profile->save();
         }else{
@@ -80,9 +102,39 @@ class JobSeekerController extends Controller
             $seeker_profile->marital_status=$request->marital_status;
             $seeker_profile->DOB=$request->DOB;
             $seeker_profile->career_objective=$request->career_objective;
+
+            if ($request->file('image')) {
+                $this->validate($request, [
+                    'image' => 'required|mimes:jpg,JPG,JPEG,jpeg,png|max:2048',
+                ]);
+                if (File::exists($seeker_profile->image)) {
+                    unlink($seeker_profile->image);
+                }
+                $profilelogo = $request->file('image');
+                $fileType = $profilelogo->getClientOriginalExtension();
+                $imageName = date('YmdHis') . "image" . rand(1, 100) . '.' . $fileType;
+                $directory = 'images/';
+                $imageUrl = $directory . $imageName;
+                Image::make($profilelogo)->save($imageUrl);
+                $seeker_profile->image = $imageUrl;
+            }
          
             $seeker_profile->save();
         }
         return Redirect()->back()->with('message','Save successfully');
+    }
+    public function appllyNow($id){
+        if(Auth::check()){
+            // return $id;
+            $obj_job_app=new JobApplication();
+            $obj_job_app->user_id=Auth::user()->id;
+            $obj_job_app->job_post_id=$id;
+            $obj_job_app->save();
+            return redirect()->back()->with('message','Applyed Succefully.');
+
+        }else{
+            return redirect()->back()->with('error_m','Please Login For Apply.');
+        }
+        
     }
 }

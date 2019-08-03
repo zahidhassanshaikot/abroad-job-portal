@@ -12,6 +12,7 @@ use DB;
 use File;
 use Image;
 use Illuminate\Support\Facades\Auth;
+use App\JobApplication;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 
@@ -33,12 +34,21 @@ class DeshboardController extends Controller
             ]);
     }
     public function jobDetails($id){
+        if(Auth::check()){
+            $obj_job_app=JobApplication::where('user_id',Auth::user()->id)
+            ->where('job_post_id',$id)->first();
+        }else{
+            $obj_job_app=null;
+        }
         $obj_jobs=JobPost::join('company_profile','company_profile.user_id','=','job_posts.user_id')
         ->where('job_posts.id',$id)
         ->select('job_posts.*','company_profile.logo','company_profile.company_name','company_profile.website','company_profile.address')
         ->first();
         // return $obj_jobs;
-        return view('job-details',['obj_jobs'=>$obj_jobs]);
+        return view('job-details',[
+            'obj_job_app'=>$obj_job_app,
+            'obj_jobs'=>$obj_jobs
+        ]);
     }
     public function dashboard(){
         return view('dashboard');

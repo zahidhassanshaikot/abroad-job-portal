@@ -25,7 +25,7 @@
           </li>
 
           <li class="nav-item dropdown">
-            <a class="nav-link" href="manage-job-list.php">
+            <a class="nav-link" href="{{ route('manage-job-list',['id'=>Auth::user()->id])}}">
               <i class="fa fa-list-ul"></i> <span class="menu-title">Manage Jobs</span>
             </a>
           </li>

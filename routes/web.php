@@ -25,7 +25,8 @@ Route::get('/job-seeker-register', 'DeshboardController@jobSeekerRegister')->nam
 Route::post('/save-reg-info', 'DeshboardController@saveRegisterInfo')->name('save-reg-info');
 
 
-
+Route::get('applly-now/{id}', 'JobSeekerController@appllyNow')->name('applly-now');
+       
 
 Route::group(['middleware' => 'role:Employer Seeker'], function () {
 
@@ -34,6 +35,9 @@ Route::group(['middleware' => 'role:Employer Seeker'], function () {
         Route::post('save-company-profile-info', 'CompanyController@saveCompanyProfileInfo')->name('save-company-profile-info');
         Route::get('post-job', 'CompanyController@postJob')->name('post-job');
         Route::post('post-new-job', 'CompanyController@postNewJob')->name('post-new-job');
+        Route::get('manage-job-list/{id}', 'CompanyController@manageJobList')->name('manage-job-list');
+        Route::get('candidates-list/{id}', 'CompanyController@candidatesList')->name('candidates-list');
+        Route::get('candidate-profile/{id}', 'CompanyController@candidateProfile')->name('candidate-profile');
             
 });
  

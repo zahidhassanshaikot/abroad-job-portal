@@ -218,7 +218,7 @@
 							<a href="<?php echo e(route('job-details',['id'=>$job->id])); ?>">See More...</a>
 						</div>
 						<div class="apply-btn">
-							<a href="#">Apply Job</a>
+							<a href="<?php echo e(route('job-details',['id'=>$job->id])); ?>">Apply Job</a>
 						</div>
 					</div>
 					<div class="post-meta">

@@ -25,16 +25,12 @@
           </li>
 
           <li class="nav-item dropdown">
-            <a class="nav-link" href="manage-job-list.php">
+            <a class="nav-link" href="<?php echo e(route('manage-job-list',['id'=>Auth::user()->id])); ?>">
               <i class="fa fa-list-ul"></i> <span class="menu-title">Manage Jobs</span>
             </a>
           </li>
 
-          <li class="nav-item dropdown">
-            <a class="nav-link" href="index.php" role="button">
-              <i class="fa fa-power-off"></i> <span class="menu-title">Logout</span>
-            </a>
-          </li>
+    
         </ul>
       </nav>
     </aside><!-- /.left-panel -->

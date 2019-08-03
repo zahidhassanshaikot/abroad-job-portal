@@ -23,7 +23,7 @@
               <div class="content-details show">
                 <div class="card">
                   <div class="card-body card-block">
-                  <form action="{{ route('save-job-seeker-profile-info') }}" method="POST">
+                  <form action="{{ route('save-job-seeker-profile-info') }}" method="POST" enctype="multipart/form-data">
                     {{ csrf_field() }}
                       <div class="row">
                       <div class="col-md-6">
@@ -348,6 +348,14 @@
                           <label class="form-control-label">Career Objective <span>*</span> </label>
                           <div class="input-group">
                             <input class="form-control" @if(!empty($seeker_profile)) value="{{$seeker_profile->career_objective}}" @endif name="career_objective" type="text" placeholder="Career Objective">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group profile-form">
+                          <label class="form-control-label">Image <span>*</span> </label>
+                          <div class="input-group">
+                          <input type="file" name="image">
                           </div>
                         </div>
                       </div>

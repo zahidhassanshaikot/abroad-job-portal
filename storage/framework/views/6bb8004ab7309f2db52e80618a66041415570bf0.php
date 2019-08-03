@@ -6,9 +6,9 @@
   <title>Candidates Short List</title>
 
 
-    <?php include 'header/dashboard-header.php'; ?>
-
-    <?php include 'sidebar/admin-sidebar2.php'; ?>
+    <?php echo $__env->make('layouts/header/dashboard-header', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <?php echo $__env->make('layouts/sidebar/admin-sidebar2', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    
 
     <div class="dashboard-contents">
       <div class="contents-inner">
@@ -143,15 +143,16 @@
         </div>
       </div><!-- /.contents-inner -->
 
-     <?php include 'footer/footer.php'; ?>
+   
+      <?php echo $__env->make('layouts/footer/footer', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    
 
+  <script src="<?php echo e(asset('design')); ?>/assets/js/jquery-3.2.1.slim.min.js"></script>
+  <script src="<?php echo e(asset('design')); ?>/assets/js/plugins.js"></script>
+  <script src="<?php echo e(asset('design')); ?>/assets/js/tables/jquery.dataTables.min.js"></script>
+  <script src="<?php echo e(asset('design')); ?>/assets/js/tables/dataTables.bootstrap4.min.js"></script>
 
-  <script src="assets/js/jquery-3.2.1.slim.min.js"></script>
-  <script src="assets/js/plugins.js"></script>
-  <script src="assets/js/tables/jquery.dataTables.min.js"></script>
-  <script src="assets/js/tables/dataTables.bootstrap4.min.js"></script>
-
-  <script src="assets/js/main.js"></script>
+  <script src="<?php echo e(asset('design')); ?>/assets/js/main.js"></script>
 
   <script>
     $(document).ready(function() {

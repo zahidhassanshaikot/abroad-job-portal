@@ -35,7 +35,7 @@
 <body class="index-01">
   <header class="top-header media">
     <div class="top-left mr-3">
-      <a class="navbar-brand" href="index.php"><img src="<?php echo e(asset('design')); ?>/images/logo.png" alt="Site Logo"></a><!-- /.navbar-brand -->
+    <a class="navbar-brand" href="<?php echo e(route('/')); ?>"><img src="<?php echo e(asset('design')); ?>/images/logo.png" alt="Site Logo"></a><!-- /.navbar-brand -->
     </div><!-- /.top-left -->
 
     <div class="top-right media-body">
@@ -151,7 +151,7 @@
 
             <form id="logout-form" action="<?php echo e(route('logout')); ?>" method="POST" style="display: none;">
                 <?php echo csrf_field(); ?>
-                </form>
+            </form>
           </ul>
         </div>
 
