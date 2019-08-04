@@ -228,9 +228,9 @@
 					<div class="post-meta">
 						<ul>
 							<li><p><i class="fas fa-map-marker-alt"></i> <?php echo e($job->location); ?></p></li>
-							<li><p><i class="fas fa-calendar-alt"></i> <?php echo e($job->created_at); ?></p></li>
+							<li><p><i class="fas fa-calendar-alt"></i><?php echo e(\Carbon\Carbon::parse($job->created_at)->toformattedDateString()); ?></p></li>
 							<li><p><i class="far fa-clock"></i> <?php echo e($job->job_type); ?> </p></li>
-							<li><p><i class="far fa-clock"></i> <?php echo e($job->last_date); ?> </p></li>
+							<li><p><i class="far fa-clock"></i><?php echo e(\Carbon\Carbon::parse($job->last_date)->diffForHumans($job->created_at)); ?> </p></li>
 						</ul>
 					</div>
 				</article>

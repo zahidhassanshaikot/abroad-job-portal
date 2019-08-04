@@ -124,6 +124,7 @@
                             <option <?php if(!empty($obj_company)): ?> <?php if($obj_company->districts=='Rangpur'): ?> selected="selected" <?php endif; ?> <?php endif; ?>  value="Rangpur">Rangpur</option>
                             <option <?php if(!empty($obj_company)): ?> <?php if($obj_company->districts=='Mymensingh'): ?> selected="selected" <?php endif; ?> <?php endif; ?>  value="Mymensingh">Mymensingh</option>
                             
+                            
                             <option <?php if(!empty($obj_company)): ?> <?php if($obj_company->districts=='Anywhere in Bangladesh'): ?> selected="selected" <?php endif; ?> <?php endif; ?> value="Anywhere in Bangladesh">Anywhere in Bangladesh</option>
                           </select>
                         </div>

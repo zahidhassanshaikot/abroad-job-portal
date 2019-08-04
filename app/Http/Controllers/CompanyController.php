@@ -235,7 +235,6 @@ class CompanyController extends Controller
 
     }
 
-
     public function candidateProfile($id){
  
         $seeker_profile=jobSeekerProfile::where('job_seeker_profile.id', $id)
@@ -244,5 +243,12 @@ class CompanyController extends Controller
 
         return view('candidate-profile',['seeker_profile'=>$seeker_profile]);
         
+    }
+    public function companyList(){
+    $obj_company=CompanyProfile::join('users','users.id','=','company_profile.user_id')
+    ->select('company_profile.*','users.phone_no','users.email')->get();  
+    
+    return view('company-list',['obj_company'=>$obj_company]);
+
     }
 }

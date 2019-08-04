@@ -193,11 +193,11 @@
 								</dl>	
 								<dl class="row">
 									<dt class="col-md-4">Post On</dt>
-									<dd class="col-md-8">{{ $obj_jobs->created_at }}</dd>
+									<dd class="col-md-8">{{ \Carbon\Carbon::parse($obj_jobs->created_at)->toDayDateTimeString() }}</dd>
 								</dl>	
 								<dl class="row">
 									<dt class="col-md-4">Last Date</dt>
-									<dd class="col-md-8">{{ $obj_jobs->last_date }}</dd>
+									<dd class="col-md-8">{{ \Carbon\Carbon::parse($obj_jobs->last_date)->toDayDateTimeString() }}</dd>
 								</dl>	
 								<dl class="row">
 									<dt class="col-md-4">No. of Vecancies</dt>
