@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\JobApplication;
 use App\jobSeekerProfile;
+use App\Message;
 
 class CompanyController extends Controller
 {
@@ -249,6 +250,27 @@ class CompanyController extends Controller
     ->select('company_profile.*','users.phone_no','users.email')->get();  
     
     return view('company-list',['obj_company'=>$obj_company]);
+
+    }
+    public function message($job_post_id,$reciver_id){
+    
+    return view('message',['job_post_id'=>$job_post_id,'reciver_id'=>$reciver_id]);
+
+    }
+    public function sendMessage(Request $request){
+        $this->validate($request, [
+            'message' => 'required', 
+
+        ]);
+        // return $request;
+        $obj_msg=new Message();
+        $obj_msg->sender_id=Auth::user()->id;
+        $obj_msg->receiver_id=$request->reciver_id;
+        $obj_msg->message=$request->message;
+        $obj_msg->job_post_id=$request->job_post_id;
+        $obj_msg->save();
+    
+    return redirect()->back()->with('message','Message Succssfully Send.');
 
     }
 }

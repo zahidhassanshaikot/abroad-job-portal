@@ -44,6 +44,8 @@ Route::group(['middleware' => 'role:Employer Seeker|Admin'], function () {
         Route::get('eliminated-candidates-list/{id}', 'CompanyController@eliminatedCandidatesList')->name('eliminated-candidates-list');
         
         Route::get('company-list', 'CompanyController@companyList')->name('company-list');
+        Route::get('message/{job_post_id}/{reciver_id}', 'CompanyController@message')->name('message');
+        Route::post('send-message', 'CompanyController@sendMessage')->name('send-message');
         
         Route::get('candidate-profile/{id}', 'CompanyController@candidateProfile')->name('candidate-profile');
         Route::get('select-for-job/{id}', 'CompanyController@SelectForJob')->name('select-for-job');
@@ -56,6 +58,7 @@ Route::group(['middleware' => 'role:Employer Seeker|Admin'], function () {
 Route::group(['middleware' => 'role:Job Seeker'], function () {
         Route::get('job-seeker-dashboard', 'JobSeekerController@jobSeekerDashboard')->name('job-seeker-dashboard');
         Route::get('job-seeker-profile', 'JobSeekerController@jobSeekerProfile')->name('job-seeker-profile');
+        Route::get('view-message', 'JobSeekerController@viewMessage')->name('view-message');
         Route::post('save-job-seeker-profile-info', 'JobSeekerController@saveJobSeekerProfileInfo')->name('save-job-seeker-profile-info');
                  
        

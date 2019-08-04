@@ -4,7 +4,7 @@
         <ul class="navbar-nav">
 
           <li class="nav-item dropdown active">
-            <a class="nav-link" href="dashboard.php">
+          <a class="nav-link" href="<?php echo e(route('job-seeker-dashboard')); ?>">
                <i class="fa fa-tachometer"></i><span class="menu-title">Dashboard</span>
             </a>
           </li>
@@ -16,8 +16,8 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="job-seeker-dashboard.php">
-              <i class="fa fa-home"></i> <span class="menu-title">Overview</span>
+          <a class="nav-link" href="<?php echo e(route('view-message')); ?>">
+              <i class="fa fa-home"></i> <span class="menu-title">Message</span>
             </a>
           </li>
 

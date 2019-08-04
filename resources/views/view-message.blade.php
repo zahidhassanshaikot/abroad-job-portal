@@ -3,14 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Manage Job List</title>
+  <title>Company List</title>
 
 
-
-
-@include('layouts/header/dashboard-header')
-@include('layouts/sidebar/sidebar')
-
+  @include('layouts/header/dashboard-header')
+  @include('layouts/sidebar/job-seeker-sidebar')
 
     <div class="dashboard-contents">
       <div class="contents-inner">
@@ -18,42 +15,42 @@
           <div class="col-12">
             <div class="section-content">
               <div class="content-head">
-                <h4 class="content-title">Manage Jobs</h4><!-- /.content-title -->
+                <h4 class="content-title">Company List</h4><!-- /.content-title -->
               </div><!-- /.content-head -->
 
               <div class="content-details show">
                 <table id="data-table" class="table data-table table-striped table-bordered">
                   <thead>
                     <tr>
-                      <th>#No</th>
-                      <th>Job Title</th>
-                      <th>Post Date</th>
-                      <th>Deadline</th>
-                      <th>Total Apply</th>
-                      <th>Action</th>
+                      <th>id</th>
+                      <th>Sender ID</th>
+                      <th>Message</th>
+                      <th>Send At</th>
+                     
                     </tr>
                   </thead>
-                  
+
                   <tbody>
-                    @foreach ($obj_jobPost as $item)
-                      <?php $total=DB::table('job_applications')->where('job_post_id', $item->id)->count() ?>
-                    
+                    @foreach($obj_msg as $msg)
                     <tr>
-                    <td>{{ $item->id }}</td>
-                      <td>{{ $item->job_title }}</td>
-                      <td>{{ \Carbon\Carbon::parse($item->created_at)->toDayDateTimeString() }}</td>
-                      <td>{{ \Carbon\Carbon::parse($item->last_date)->toDayDateTimeString() }}</td>
-                    <td>{{ $total }}</td>
+                    <td>{{ $msg->id}}</td>
                       <td>
-                        <ul>
-                          <li><a href="{{ route('candidates-list',['id'=> $item->id ]) }}">Show List</a></li>
-                        </ul>
+                          <h6 class="company-name">{{ $msg->sender_id}}</h6>
                       </td>
+                      <td>
+                        <div class="company-pro-image">
+                                {{ $msg->message}}
+                        </div>
+                      </td>
+                      <td>
+                      <h6>{{ $msg->created_at }}</h6>
+                      </td>
+           
                     </tr>
-                    @endforeach
+                  @endforeach
                   </tbody>
 
-                
+                  
                 </table>
               </div><!-- /.content-details -->
             </div>
@@ -61,9 +58,8 @@
 
         </div>
       </div><!-- /.contents-inner -->
-
       @include('layouts/footer/footer')
-    
+
 
 
   <script src="{{asset('design')}}/assets/js/jquery-3.2.1.slim.min.js"></script>
@@ -71,7 +67,7 @@
   <script src="{{asset('design')}}/assets/js/tables/jquery.dataTables.min.js"></script>
   <script src="{{asset('design')}}/assets/js/tables/dataTables.bootstrap4.min.js"></script>
 
-  <script src="assets/js/main.js"></script>
+  <script src="{{asset('design')}}/assets/js/main.js"></script>
 
   <script>
     $(document).ready(function() {
@@ -80,7 +76,7 @@
       $('.data-table').DataTable();
     });
   </script>
-  
+
 
 </body>
 

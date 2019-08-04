@@ -12,6 +12,7 @@ use Image;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Auth;
 use App\JobApplication;
+use App\Message;
 
 class JobSeekerController extends Controller
 {
@@ -136,5 +137,10 @@ class JobSeekerController extends Controller
             return redirect()->back()->with('error_m','Please Login For Apply.');
         }
         
+    }
+    public function viewMessage(){
+        $obj_msg=Message::where('receiver_id',Auth::user()->id)->get();
+        // return $obj_msg;
+        return view('view-message',['obj_msg'=>$obj_msg]);
     }
 }

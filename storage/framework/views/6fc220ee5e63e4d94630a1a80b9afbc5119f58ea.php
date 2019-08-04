@@ -3,14 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Manage Job List</title>
+  <title>Company List</title>
 
 
-
-
-<?php echo $__env->make('layouts/header/dashboard-header', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-<?php echo $__env->make('layouts/sidebar/sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-
+  <?php echo $__env->make('layouts/header/dashboard-header', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+  <?php echo $__env->make('layouts/sidebar/job-seeker-sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
     <div class="dashboard-contents">
       <div class="contents-inner">
@@ -18,42 +15,43 @@
           <div class="col-12">
             <div class="section-content">
               <div class="content-head">
-                <h4 class="content-title">Manage Jobs</h4><!-- /.content-title -->
+                <h4 class="content-title">Company List</h4><!-- /.content-title -->
               </div><!-- /.content-head -->
 
               <div class="content-details show">
                 <table id="data-table" class="table data-table table-striped table-bordered">
                   <thead>
                     <tr>
-                      <th>#No</th>
-                      <th>Job Title</th>
-                      <th>Post Date</th>
-                      <th>Deadline</th>
-                      <th>Total Apply</th>
-                      <th>Action</th>
+                      <th>id</th>
+                      <th>Sender ID</th>
+                      <th>Message</th>
+                      <th>Send At</th>
+                     
                     </tr>
                   </thead>
-                  
+
                   <tbody>
-                    <?php $__currentLoopData = $obj_jobPost; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                      <?php $total=DB::table('job_applications')->where('job_post_id', $item->id)->count() ?>
-                    
+                    <?php $__currentLoopData = $obj_msg; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $msg): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <tr>
-                    <td><?php echo e($item->id); ?></td>
-                      <td><?php echo e($item->job_title); ?></td>
-                      <td><?php echo e(\Carbon\Carbon::parse($item->created_at)->toDayDateTimeString()); ?></td>
-                      <td><?php echo e(\Carbon\Carbon::parse($item->last_date)->toDayDateTimeString()); ?></td>
-                    <td><?php echo e($total); ?></td>
+                    <td><?php echo e($msg->id); ?></td>
                       <td>
-                        <ul>
-                          <li><a href="<?php echo e(route('candidates-list',['id'=> $item->id ])); ?>">Show List</a></li>
-                        </ul>
+                          <h6 class="company-name"><?php echo e($msg->sender_id); ?></h6>
                       </td>
+                      <td>
+                        <div class="company-pro-image">
+                                <?php echo e($msg->message); ?>
+
+                        </div>
+                      </td>
+                      <td>
+                      <h6><?php echo e($msg->created_at); ?></h6>
+                      </td>
+           
                     </tr>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                   </tbody>
 
-                
+                  
                 </table>
               </div><!-- /.content-details -->
             </div>
@@ -61,9 +59,8 @@
 
         </div>
       </div><!-- /.contents-inner -->
-
       <?php echo $__env->make('layouts/footer/footer', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-    
+
 
 
   <script src="<?php echo e(asset('design')); ?>/assets/js/jquery-3.2.1.slim.min.js"></script>
@@ -71,7 +68,7 @@
   <script src="<?php echo e(asset('design')); ?>/assets/js/tables/jquery.dataTables.min.js"></script>
   <script src="<?php echo e(asset('design')); ?>/assets/js/tables/dataTables.bootstrap4.min.js"></script>
 
-  <script src="assets/js/main.js"></script>
+  <script src="<?php echo e(asset('design')); ?>/assets/js/main.js"></script>
 
   <script>
     $(document).ready(function() {
@@ -80,7 +77,7 @@
       $('.data-table').DataTable();
     });
   </script>
-  
+
 
 </body>
 

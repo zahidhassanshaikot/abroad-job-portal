@@ -137,9 +137,9 @@
                           <li><a href="{{ route('candidate-profile',['id'=>$item->user_id]) }}" target="blank" class="profile">View Profile</a></li>
                           <li><a href="{{ route('select-for-job',['id'=> $job_post_id ]) }}" class="success">Select for job</a></li>
                           <li><a href="{{ route('shortlist-for-job',['id'=> $job_post_id ]) }}" class="success">ShortList for job</a></li>
-                          <li><a href="{{ route('pending-for-job',['id'=> $job_post_id ]) }}" class="success">Pending for job</a></li>
-                          <li><a href="{{ route('eliminated-for-job',['id'=> $job_post_id ]) }}" class="success">Eliminated for job</a></li>
-                          <li><a href="message.php" class="message">Send Message</a></li>
+                          <li><a href="{{ route('pending-for-job',['id'=> $job_post_id ]) }}" class="warning">Pending for job</a></li>
+                          <li><a href="{{ route('eliminated-for-job',['id'=> $job_post_id ]) }}" class="danger">Eliminated for job</a></li>
+                          <li><a href="{{ route('message',['job_post_id'=> $job_post_id,'reciver_id'=> $item->id  ])}}" class="message">Send Message</a></li>
                         </ul>
                       </td>
                     </tr>
