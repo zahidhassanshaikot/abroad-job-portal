@@ -26,6 +26,9 @@ class LoginController extends Controller
         
         } else if ($user->hasRole('Employer Seeker')){
 
+            return redirect('company-dashboard'); 
+        } else if ($user->hasRole('Admin')){
+
             return redirect('company-dashboard');
         }else{
             $request->session()->invalidate();

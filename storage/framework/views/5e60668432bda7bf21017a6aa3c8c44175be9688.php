@@ -36,7 +36,7 @@
                   
                   <tbody>
                     <?php $__currentLoopData = $obj_jobPost; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <?php $total=DB::table('job_applications')->where('job_post_id', $item->id)->count() ?>
+                      <?php $total=DB::table('job_applications')->where('job_post_id', $item->id)->count() ?>
                     
                     <tr>
                     <td><?php echo e($item->id); ?></td>

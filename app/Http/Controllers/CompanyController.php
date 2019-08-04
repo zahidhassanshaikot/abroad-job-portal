@@ -33,7 +33,7 @@ class CompanyController extends Controller
         ]);
         $user_id=Auth::user()->id;
         $obj_company_v=CompanyProfile::where('user_id',$user_id)->first();
-        // return $request;
+
         if(empty($obj_company_v)){
             $obj_company=new CompanyProfile;
             $obj_company->company_name=$request->company_name;
@@ -144,7 +144,7 @@ class CompanyController extends Controller
         ->select('job_seeker_profile.*','job_applications.status')
         ->get();
 
-        // return $obj_jobPost;
+        
 
         return view('candidates-list',[
             'obj_jobPost'=>$obj_jobPost,
@@ -207,7 +207,7 @@ class CompanyController extends Controller
         $obj_jobPost->status='Selected';
         $obj_jobPost->save();
         return redirect()->back()->with('message','Successfully Selected.');
-        // return $obj_jobPost;
+        
 
     }
     public function pendingForJob($id){
@@ -215,7 +215,7 @@ class CompanyController extends Controller
         $obj_jobPost->status='Pending';
         $obj_jobPost->save();
         return redirect()->back()->with('message','Successfully Pending.');
-        // return $obj_jobPost;
+        
 
     }
     public function eliminatedForJob($id){
@@ -223,7 +223,7 @@ class CompanyController extends Controller
         $obj_jobPost->status='Eliminated';
         $obj_jobPost->save();
         return redirect()->back()->with('message','Successfully Eliminated.');
-        // return $obj_jobPost;
+        
 
     }
     public function shortlistForJob($id){
@@ -231,7 +231,7 @@ class CompanyController extends Controller
         $obj_jobPost->status='Short Listed';
         $obj_jobPost->save();
         return redirect()->back()->with('message','Successfully save to Short Listed.');
-        // return $obj_jobPost;
+        
 
     }
 

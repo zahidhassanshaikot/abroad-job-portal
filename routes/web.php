@@ -29,7 +29,7 @@ Route::post('/job-search', 'DeshboardController@jobSearch')->name('job-search');
 Route::get('applly-now/{id}', 'JobSeekerController@appllyNow')->name('applly-now');
        
 
-Route::group(['middleware' => 'role:Employer Seeker'], function () {
+Route::group(['middleware' => 'role:Employer Seeker|Admin'], function () {
 
         Route::get('company-dashboard', 'CompanyController@companyDashboard')->name('company-dashboard');
         Route::get('company-profile', 'CompanyController@companyProfile')->name('company-profile');
