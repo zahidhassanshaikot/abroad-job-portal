@@ -7,16 +7,87 @@
 
 
     @include('layouts/header/dashboard-header')
-    @include('layouts/sidebar/admin-sidebar2')
+    {{-- @include('layouts/sidebar/admin-sidebar2') --}}
+
+    <div class="content-wrapper container-fluid">
+      <aside class="left-panel">
+        <nav class="navbar">
+          <ul class="navbar-nav">
+  
+            <li class="nav-item dropdown active">
+              <a class="nav-link" href="{{ route('company-dashboard') }}">
+                 <i class="fa fa-tachometer"></i><span class="menu-title">Dashboard</span>
+              </a>
+            </li>
+  
+            </li>
+            {{-- <li class="nav-item">
+              <a class="nav-link" href="total-job.php">
+                <i class="fa fa-hashtag"></i> <span class="menu-title">Total Jobs</span>
+              </a>
+            </li> --}}
+  
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('candidates-list',['id'=> $job_post_id ]) }}">
+                <i class="fa fa-product-hunt"></i> <span class="menu-title">Candidate List</span>
+              </a>
+            </li>
+  
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('selected-candidates-list',['id'=> $job_post_id ]) }}">
+                <i class="fa fa-product-hunt"></i> <span class="menu-title">Selected List</span> 
+              </a>
+            </li>
+  
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('shortlist-candidates-list',['id'=> $job_post_id ]) }}">
+                <i class="fa fa-list-ul"></i> <span class="menu-title">Short List</span>
+              </a>
+            </li>
+  
+            <li class="nav-item dropdown">
+              <a class="nav-link" href="{{ route('pending-candidates-list',['id'=> $job_post_id ]) }}">
+                <i class="fa fa-list-ul"></i> <span class="menu-title">Pending Candidates Lists</span>
+              </a>
+            </li>
+  
+            <li class="nav-item dropdown">
+              <a class="nav-link" href="{{ route('eliminated-candidates-list',['id'=> $job_post_id ]) }}">
+                <i class="fa fa-list-ul"></i> <span class="menu-title">Eliminated Candidates List</span>
+              </a>
+            </li>
+  
+         
+  
+          </ul>
+        </nav>
+      </aside><!-- /.left-panel -->
+
+      
+
+
+
+
+
+
+
+      
     
 
     <div class="dashboard-contents">
       <div class="contents-inner">
+
+          @if(Session::get('message'))
+          <div class="alert alert-success" id="message">
+              <h4 class=" text-center text-success"> {{ Session::get('message') }}</h4>
+          </div>
+      @endif
         <div class="row">
           <div class="col-12">
             <div class="section-content">
               <div class="content-head">
-                <h4 class="content-title">Candidates Pending List for <span class="job-title">Sytstem Architect</span></h4><!-- /.content-title -->
+                <h4 class="content-title">Candidates List</h4><!-- /.content-title -->
               </div><!-- /.content-head -->
 
               <div class="content-details show">
@@ -28,6 +99,7 @@
                       <th>Picture</th>
                       <th>Address</th>
                       <th>Mobile</th>
+                      <th>Status</th>
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -59,10 +131,14 @@
                           </div>
                       </td>
                       <td>{{ $item->contact_no }}</td>
+                      <td>{{ $item->status }}</td>
                       <td class="action">
                         <ul>
                           <li><a href="{{ route('candidate-profile',['id'=>$item->user_id]) }}" target="blank" class="profile">View Profile</a></li>
-                          <li><a href="#" class="success">Select for job</a></li>
+                          <li><a href="{{ route('select-for-job',['id'=> $job_post_id ]) }}" class="success">Select for job</a></li>
+                          <li><a href="{{ route('shortlist-for-job',['id'=> $job_post_id ]) }}" class="success">ShortList for job</a></li>
+                          <li><a href="{{ route('pending-for-job',['id'=> $job_post_id ]) }}" class="success">Pending for job</a></li>
+                          <li><a href="{{ route('eliminated-for-job',['id'=> $job_post_id ]) }}" class="success">Eliminated for job</a></li>
                           <li><a href="message.php" class="message">Send Message</a></li>
                         </ul>
                       </td>
@@ -70,16 +146,6 @@
                     @endforeach
                   </tbody>
 
-                  <tfoot>
-                    <tr>
-                      <th>#No</th>
-                      <th>Name</th>
-                      <th>Email</th>
-                      <th>Mobile</th>
-                      <th>Address</th>
-                      <th>Action</th>
-                    </tr>
-                  </tfoot>
                 </table>
               </div><!-- /.content-details -->
             </div>

@@ -67,7 +67,7 @@ class DeshboardController extends Controller
     }
 
     public function saveRegisterInfo(Request $request){
-        // return $request;
+
         $this->validate($request, [
             'fname' => 'required|max:30|min:2',
             'lname' => 'required|max:30|min:2',
@@ -95,17 +95,13 @@ class DeshboardController extends Controller
                 return redirect('company-dashboard');
             }
             
-            
 
-             
-
-            // return redirect()->route('user-login');
     }
 
     public function jobSearch(Request $request){
-        // return $request;
+  
         if($request->location=='Anywhere of Bangladesh'){
-            // return 'hi';
+            
         $obj_jobs=JobPost::join('company_profile','company_profile.user_id','=','job_posts.user_id')
         
         ->where('job_posts.category',$request->category)
@@ -123,7 +119,7 @@ class DeshboardController extends Controller
         ->select('job_posts.*','company_profile.logo')
         ->paginate(10);
     }
-        // return $obj_jobs;
+ 
         return view('jobs',[
             'obj_jobs'=>$obj_jobs,
             ]);

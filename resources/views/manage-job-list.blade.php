@@ -36,14 +36,14 @@
                   
                   <tbody>
                     @foreach ($obj_jobPost as $item)
-                        
+                      <?php $total=DB::table('job_applications')->where('job_post_id', $item->id)->count() ?>
                     
                     <tr>
                     <td>{{ $item->id }}</td>
                       <td>{{ $item->job_title }}</td>
                       <td>{{ $item->created_at }}</td>
                       <td>{{ $item->last_date }}</td>
-                      <td>10</td>
+                    <td>{{ $total }}</td>
                       <td>
                         <ul>
                           <li><a href="{{ route('candidates-list',['id'=> $item->id ]) }}">Show List</a></li>

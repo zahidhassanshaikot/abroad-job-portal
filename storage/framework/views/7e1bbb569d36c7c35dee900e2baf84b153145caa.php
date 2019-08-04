@@ -7,16 +7,83 @@
 
 
     <?php echo $__env->make('layouts/header/dashboard-header', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-    <?php echo $__env->make('layouts/sidebar/admin-sidebar2', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    
+
+    <div class="content-wrapper container-fluid">
+      <aside class="left-panel">
+        <nav class="navbar">
+          <ul class="navbar-nav">
+  
+            <li class="nav-item dropdown active">
+              <a class="nav-link" href="<?php echo e(route('company-dashboard')); ?>">
+                 <i class="fa fa-tachometer"></i><span class="menu-title">Dashboard</span>
+              </a>
+            </li>
+  
+            </li>
+            
+  
+            <li class="nav-item">
+              <a class="nav-link" href="<?php echo e(route('candidates-list',['id'=> $job_post_id ])); ?>">
+                <i class="fa fa-product-hunt"></i> <span class="menu-title">Candidate List</span>
+              </a>
+            </li>
+  
+            <li class="nav-item">
+              <a class="nav-link" href="<?php echo e(route('selected-candidates-list',['id'=> $job_post_id ])); ?>">
+                <i class="fa fa-product-hunt"></i> <span class="menu-title">Selected List</span> 
+              </a>
+            </li>
+  
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="<?php echo e(route('shortlist-candidates-list',['id'=> $job_post_id ])); ?>">
+                <i class="fa fa-list-ul"></i> <span class="menu-title">Short List</span>
+              </a>
+            </li>
+  
+            <li class="nav-item dropdown">
+              <a class="nav-link" href="<?php echo e(route('pending-candidates-list',['id'=> $job_post_id ])); ?>">
+                <i class="fa fa-list-ul"></i> <span class="menu-title">Pending Candidates Lists</span>
+              </a>
+            </li>
+  
+            <li class="nav-item dropdown">
+              <a class="nav-link" href="<?php echo e(route('eliminated-candidates-list',['id'=> $job_post_id ])); ?>">
+                <i class="fa fa-list-ul"></i> <span class="menu-title">Eliminated Candidates List</span>
+              </a>
+            </li>
+  
+         
+  
+          </ul>
+        </nav>
+      </aside><!-- /.left-panel -->
+
+      
+
+
+
+
+
+
+
+      
     
 
     <div class="dashboard-contents">
       <div class="contents-inner">
+
+          <?php if(Session::get('message')): ?>
+          <div class="alert alert-success" id="message">
+              <h4 class=" text-center text-success"> <?php echo e(Session::get('message')); ?></h4>
+          </div>
+      <?php endif; ?>
         <div class="row">
           <div class="col-12">
             <div class="section-content">
               <div class="content-head">
-                <h4 class="content-title">Candidates Pending List for <span class="job-title">Sytstem Architect</span></h4><!-- /.content-title -->
+                <h4 class="content-title">Candidates List</h4><!-- /.content-title -->
               </div><!-- /.content-head -->
 
               <div class="content-details show">
@@ -28,6 +95,7 @@
                       <th>Picture</th>
                       <th>Address</th>
                       <th>Mobile</th>
+                      <th>Status</th>
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -59,10 +127,14 @@
                           </div>
                       </td>
                       <td><?php echo e($item->contact_no); ?></td>
+                      <td><?php echo e($item->status); ?></td>
                       <td class="action">
                         <ul>
                           <li><a href="<?php echo e(route('candidate-profile',['id'=>$item->user_id])); ?>" target="blank" class="profile">View Profile</a></li>
-                          <li><a href="#" class="success">Select for job</a></li>
+                          <li><a href="<?php echo e(route('select-for-job',['id'=> $job_post_id ])); ?>" class="success">Select for job</a></li>
+                          <li><a href="<?php echo e(route('shortlist-for-job',['id'=> $job_post_id ])); ?>" class="success">ShortList for job</a></li>
+                          <li><a href="<?php echo e(route('pending-for-job',['id'=> $job_post_id ])); ?>" class="success">Pending for job</a></li>
+                          <li><a href="<?php echo e(route('eliminated-for-job',['id'=> $job_post_id ])); ?>" class="success">Eliminated for job</a></li>
                           <li><a href="message.php" class="message">Send Message</a></li>
                         </ul>
                       </td>
@@ -70,16 +142,6 @@
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                   </tbody>
 
-                  <tfoot>
-                    <tr>
-                      <th>#No</th>
-                      <th>Name</th>
-                      <th>Email</th>
-                      <th>Mobile</th>
-                      <th>Address</th>
-                      <th>Action</th>
-                    </tr>
-                  </tfoot>
                 </table>
               </div><!-- /.content-details -->
             </div>

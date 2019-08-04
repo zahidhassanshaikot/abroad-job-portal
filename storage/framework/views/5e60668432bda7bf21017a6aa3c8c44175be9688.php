@@ -36,14 +36,14 @@
                   
                   <tbody>
                     <?php $__currentLoopData = $obj_jobPost; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        
+                        <?php $total=DB::table('job_applications')->where('job_post_id', $item->id)->count() ?>
                     
                     <tr>
                     <td><?php echo e($item->id); ?></td>
                       <td><?php echo e($item->job_title); ?></td>
                       <td><?php echo e($item->created_at); ?></td>
                       <td><?php echo e($item->last_date); ?></td>
-                      <td>10</td>
+                    <td><?php echo e($total); ?></td>
                       <td>
                         <ul>
                           <li><a href="<?php echo e(route('candidates-list',['id'=> $item->id ])); ?>">Show List</a></li>

@@ -38,7 +38,16 @@ Route::group(['middleware' => 'role:Employer Seeker'], function () {
         Route::post('post-new-job', 'CompanyController@postNewJob')->name('post-new-job');
         Route::get('manage-job-list/{id}', 'CompanyController@manageJobList')->name('manage-job-list');
         Route::get('candidates-list/{id}', 'CompanyController@candidatesList')->name('candidates-list');
+        Route::get('selected-candidates-list/{id}', 'CompanyController@selectedCandidatesList')->name('selected-candidates-list');
+        Route::get('shortlist-candidates-list/{id}', 'CompanyController@ShortListCandidatesList')->name('shortlist-candidates-list');
+        Route::get('pending-candidates-list/{id}', 'CompanyController@pendingCandidatesList')->name('pending-candidates-list');
+        Route::get('eliminated-candidates-list/{id}', 'CompanyController@eliminatedCandidatesList')->name('eliminated-candidates-list');
+        
         Route::get('candidate-profile/{id}', 'CompanyController@candidateProfile')->name('candidate-profile');
+        Route::get('select-for-job/{id}', 'CompanyController@SelectForJob')->name('select-for-job');
+        Route::get('pending-for-job/{id}', 'CompanyController@pendingForJob')->name('pending-for-job');
+        Route::get('eliminated-for-job/{id}', 'CompanyController@eliminatedForJob')->name('eliminated-for-job');
+        Route::get('shortlist-for-job/{id}', 'CompanyController@shortlistForJob')->name('shortlist-for-job');
             
 });
  

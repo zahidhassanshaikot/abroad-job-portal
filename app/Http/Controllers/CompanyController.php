@@ -141,14 +141,101 @@ class CompanyController extends Controller
     public function candidatesList($id){
         $obj_jobPost=JobApplication::where('job_post_id',$id)
         ->join('job_seeker_profile','job_seeker_profile.user_id','=','job_applications.user_id')
-        ->select('job_seeker_profile.*')
+        ->select('job_seeker_profile.*','job_applications.status')
         ->get();
 
         // return $obj_jobPost;
 
-        return view('candidates-list',['obj_jobPost'=>$obj_jobPost]);
+        return view('candidates-list',[
+            'obj_jobPost'=>$obj_jobPost,
+            'job_post_id'=>$id
+            ]);
 
     }
+    public function selectedCandidatesList($id){
+        $obj_jobPost=JobApplication::where('job_post_id',$id)
+        ->join('job_seeker_profile','job_seeker_profile.user_id','=','job_applications.user_id')
+        ->where('job_applications.status','Selected')
+        ->select('job_seeker_profile.*','job_applications.status')
+        ->get();
+
+        return view('candidates-list',[
+            'obj_jobPost'=>$obj_jobPost,
+            'job_post_id'=>$id
+            ]);
+    }
+    public function ShortListCandidatesList($id){
+        $obj_jobPost=JobApplication::where('job_post_id',$id)
+        ->join('job_seeker_profile','job_seeker_profile.user_id','=','job_applications.user_id')
+        ->where('job_applications.status','Short Listed')
+        ->select('job_seeker_profile.*','job_applications.status')
+        ->get();
+
+        return view('candidates-list',[
+            'obj_jobPost'=>$obj_jobPost,
+            'job_post_id'=>$id
+            ]);
+    }
+    public function pendingCandidatesList($id){
+        $obj_jobPost=JobApplication::where('job_post_id',$id)
+        ->join('job_seeker_profile','job_seeker_profile.user_id','=','job_applications.user_id')
+        ->where('job_applications.status','Pending')
+        ->select('job_seeker_profile.*','job_applications.status')
+        ->get();
+
+        return view('candidates-list',[
+            'obj_jobPost'=>$obj_jobPost,
+            'job_post_id'=>$id
+            ]);
+    }
+    public function eliminatedCandidatesList($id){
+        $obj_jobPost=JobApplication::where('job_post_id',$id)
+        ->join('job_seeker_profile','job_seeker_profile.user_id','=','job_applications.user_id')
+        ->where('job_applications.status','Eliminated')
+        ->select('job_seeker_profile.*','job_applications.status')
+        ->get();
+
+        return view('candidates-list',[
+            'obj_jobPost'=>$obj_jobPost,
+            'job_post_id'=>$id
+            ]);
+    }
+
+    
+    public function SelectForJob($id){
+        $obj_jobPost=JobApplication::where('job_post_id',$id)->first();
+        $obj_jobPost->status='Selected';
+        $obj_jobPost->save();
+        return redirect()->back()->with('message','Successfully Selected.');
+        // return $obj_jobPost;
+
+    }
+    public function pendingForJob($id){
+        $obj_jobPost=JobApplication::where('job_post_id',$id)->first();
+        $obj_jobPost->status='Pending';
+        $obj_jobPost->save();
+        return redirect()->back()->with('message','Successfully Pending.');
+        // return $obj_jobPost;
+
+    }
+    public function eliminatedForJob($id){
+        $obj_jobPost=JobApplication::where('job_post_id',$id)->first();
+        $obj_jobPost->status='Eliminated';
+        $obj_jobPost->save();
+        return redirect()->back()->with('message','Successfully Eliminated.');
+        // return $obj_jobPost;
+
+    }
+    public function shortlistForJob($id){
+        $obj_jobPost=JobApplication::where('job_post_id',$id)->first();
+        $obj_jobPost->status='Short Listed';
+        $obj_jobPost->save();
+        return redirect()->back()->with('message','Successfully save to Short Listed.');
+        // return $obj_jobPost;
+
+    }
+
+
     public function candidateProfile($id){
  
         $seeker_profile=jobSeekerProfile::where('job_seeker_profile.id', $id)
