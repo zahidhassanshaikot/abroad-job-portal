@@ -103,8 +103,9 @@ class DeshboardController extends Controller
     }
 
     public function jobSearch(Request $request){
-        return $request;
-        if($request->location!='Anywhere of Bangladesh'){
+        // return $request;
+        if($request->location=='Anywhere of Bangladesh'){
+            // return 'hi';
         $obj_jobs=JobPost::join('company_profile','company_profile.user_id','=','job_posts.user_id')
         
         ->where('job_posts.category',$request->category)

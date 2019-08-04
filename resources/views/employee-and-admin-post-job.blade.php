@@ -140,6 +140,22 @@
                         </div>
                       </div>
                       <div class="col-md-6">
+                        <div class="select-category  profile-form">
+                          <span>Select Category</span>
+                          <select class="category form-control" name="category">
+                            <option >Accounting</option>
+                            <option >Administration</option>
+                            <option >Advertising</option>
+                            <option >Banking</option>
+                            <option >Software</option>
+                            <option >Hardware</option>
+                            <option >Design</option>
+                            <option >Data Entry</option>
+                            <option >Others</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-12">
                         <div class="form-group profile-form"> 
                            <input type="submit" class="btn btn-info" value="Post">
                         </div>

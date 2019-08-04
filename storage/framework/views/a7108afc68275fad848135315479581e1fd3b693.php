@@ -173,6 +173,7 @@
 						<option >Hardware</option>
 						<option >Design</option>
 						<option >Data Entry</option>
+						<option >Others</option>
 					</select>
 				</div>
 			</div>

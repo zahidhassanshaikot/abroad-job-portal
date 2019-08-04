@@ -124,6 +124,7 @@ class CompanyController extends Controller
         $obj_jobPost->salary=$request->salary;
         $obj_jobPost->additional_requirements=$request->additional_requirements;
         $obj_jobPost->edu_req=$request->edu_req;
+        $obj_jobPost->category=$request->category;
         $obj_jobPost->user_id=$user_id;
         $obj_jobPost->save();
 
