@@ -143,44 +143,46 @@
 
 <section id="job-list">
 	<div class="container">
+	<form action="{{ route('job-search') }}" method="POST">
+		@csrf
 		<div class="row">
 			<div class="col-sm-12 col-md-6 col-lg-4">
 				<div class="select-location form-group">
 					<span>Select Location</span>
-					<select class="location">
-						<option value="">Anywhere of Bangladesh</option>
-						<option value="">Dhaka</option>
-						<option value="">Chittagong</option>
-						<option value="">Barisal</option>
-						<option value="">Barguna</option>
-						<option value="">Bhola</option>
-						<option value="">Comilla</option>
-						<option value="">Feni</option>
+					<select class="location" name="location">
+						<option>Anywhere of Bangladesh</option>
+						<option>Dhaka</option>
+						<option>Chittagong</option>
+						<option>Barisal</option>
+						<option>Barguna</option>
+						<option>Bhola</option>
+						<option>Comilla</option>
+						<option>Feni</option>
 					</select>
 				</div>
 			</div>
 			<div class="col-sm-12 col-md-6 col-lg-4">
 				<div class="select-category form-group">
 					<span>Select Category</span>
-					<select class="category">
-						<option value="">Accounting</option>
-						<option value="">Administration</option>
-						<option value="">Advertising</option>
-						<option value="">Banking</option>
-						<option value="">Software</option>
-						<option value="">Hardware</option>
-						<option value="">Design</option>
-						<option value="">Data Entry</option>
+					<select class="category" name="category">
+						<option >Accounting</option>
+						<option >Administration</option>
+						<option >Advertising</option>
+						<option >Banking</option>
+						<option >Software</option>
+						<option >Hardware</option>
+						<option >Design</option>
+						<option >Data Entry</option>
 					</select>
 				</div>
 			</div>
 			<div class="col-sm-12 col-md-6 col-lg-4">
 				<div class="select-type form-group">
 					<span>Job Type</span>
-					<select class="type">
-						<option value="">Full time</option>
-						<option value="">Part time</option>
-						<option value="">Contractual</option>
+					<select class="type" name="job_type">
+						<option value="Full Time">Full Time</option>
+						<option value="Part Time">Part Time</option>
+						<option value="Contractual">Contractual</option>
 					</select>
 				</div>
 			</div>
@@ -190,6 +192,7 @@
 				</div>
 			</div>
 		</div>
+	</form>
 	</div>
 </section>
 <section id="show-job-list">

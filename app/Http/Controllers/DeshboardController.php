@@ -101,4 +101,30 @@ class DeshboardController extends Controller
 
             // return redirect()->route('user-login');
     }
+
+    public function jobSearch(Request $request){
+        return $request;
+        if($request->location!='Anywhere of Bangladesh'){
+        $obj_jobs=JobPost::join('company_profile','company_profile.user_id','=','job_posts.user_id')
+        
+        ->where('job_posts.category',$request->category)
+        ->where('job_posts.job_type',$request->job_type)
+        ->orderBy('id','DESC')
+        ->select('job_posts.*','company_profile.logo')
+        ->paginate(10);
+    }else{
+        $obj_jobs=JobPost::join('company_profile','company_profile.user_id','=','job_posts.user_id')
+        
+        ->where('job_posts.category',$request->category)
+        ->where('job_posts.location',$request->location)
+        ->where('job_posts.job_type',$request->job_type)
+        ->orderBy('id','DESC')
+        ->select('job_posts.*','company_profile.logo')
+        ->paginate(10);
+    }
+        // return $obj_jobs;
+        return view('jobs',[
+            'obj_jobs'=>$obj_jobs,
+            ]);
+    }
 }

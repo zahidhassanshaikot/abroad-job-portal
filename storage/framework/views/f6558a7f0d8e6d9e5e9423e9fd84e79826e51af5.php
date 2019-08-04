@@ -10,15 +10,11 @@
           </li>
 
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="total-job.php">
-              <i class="fa fa-hashtag"></i> <span class="menu-title">Total Jobs</span>
-            </a>
-          </li>
+          
 
           <li class="nav-item">
             <a class="nav-link" href="total-apply.php">
-              <i class="fa fa-product-hunt"></i> <span class="menu-title">Total Apply</span>
+              <i class="fa fa-product-hunt"></i> <span class="menu-title">Candidate List</span>
             </a>
           </li>
 

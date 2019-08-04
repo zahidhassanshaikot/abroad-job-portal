@@ -23,6 +23,7 @@ Route::get('/company-login', 'DeshboardController@companyLogin')->name('company-
 Route::get('/company-register', 'DeshboardController@companyReg')->name('company-register');
 Route::get('/job-seeker-register', 'DeshboardController@jobSeekerRegister')->name('job-seeker-register');
 Route::post('/save-reg-info', 'DeshboardController@saveRegisterInfo')->name('save-reg-info');
+Route::post('/job-search', 'DeshboardController@jobSearch')->name('job-search');
 
 
 Route::get('applly-now/{id}', 'JobSeekerController@appllyNow')->name('applly-now');
