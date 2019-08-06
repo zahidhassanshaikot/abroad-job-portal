@@ -190,6 +190,7 @@ class CompanyController extends Controller
             ]);
     }
     public function eliminatedCandidatesList($id){
+        
         $obj_jobPost=JobApplication::where('job_post_id',$id)
         ->join('job_seeker_profile','job_seeker_profile.user_id','=','job_applications.user_id')
         ->where('job_applications.status','Eliminated')
@@ -204,6 +205,7 @@ class CompanyController extends Controller
 
     
     public function SelectForJob($id){
+        
         $obj_jobPost=JobApplication::where('job_post_id',$id)->first();
         $obj_jobPost->status='Selected';
         $obj_jobPost->save();

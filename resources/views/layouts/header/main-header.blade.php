@@ -22,7 +22,23 @@
                                 <a href="{{ route('jobs') }}" class=""><span class="item_outer"><span class="item_text">Jobs</span><i class="eltdf-menu-arrow fa fa-angle-down"></i></span></a>
                             </li>
                             <li id="nav-menu-item-17" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children  has_sub wide">
-                                <a href="#" class="" data-toggle="modal" data-target="#postjob"><span class="item_outer"><span class="item_text">Post Jobs</span><i class="eltdf-menu-arrow fa fa-angle-down"></i></span></a>
+                                <a 
+                                @guest
+                                 href="#" class="" data-toggle="modal" data-target="#postjob"
+                                 @else
+                                 @if(Auth::user()->hasRole('Job Seeker')) 
+                                    
+                                    href="{{ route('job-seeker-dashboard') }}"
+                                @elseif(Auth::user()->hasRole('Employer Seeker'))
+                          
+                                href="{{ route('company-dashboard') }}" 
+                                @elseif(Auth::user()->hasRole('Admin'))
+                                href="{{ route('company-dashboard') }}"
+                                     
+                                @endif
+                           
+                                 @endguest
+                                 ><span class="item_outer"><span class="item_text">Post Jobs</span><i class="eltdf-menu-arrow fa fa-angle-down"></i></span></a>
                             </li>
                         </ul>
                     </nav>
@@ -74,7 +90,24 @@
                                     <a href="{{ route('jobs') }}" class=""><span class="item_outer"><span class="item_text">Jobs</span><span class="plus"></span><i class="eltdf-menu-arrow fa fa-angle-down"></i></span></a>
                                 </li>
                                 <li id="sticky-nav-menu-item-19" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children  has_sub narrow">
-                                    <a href="#" class=""><span class="item_outer"><span class="item_text">Post Job</span><span class="plus"></span><i class="eltdf-menu-arrow fa fa-angle-down"></i></span></a>
+                                    <a
+                                    @guest
+                                    href="#" class="" data-toggle="modal" data-target="#postjob"
+                                    @else
+                                    @if(Auth::user()->hasRole('Job Seeker')) 
+                                       
+                                       href="{{ route('job-seeker-dashboard') }}"
+                                   @elseif(Auth::user()->hasRole('Employer Seeker'))
+                             
+                                   href="{{ route('company-dashboard') }}" 
+                                   @elseif(Auth::user()->hasRole('Admin'))
+                                   href="{{ route('company-dashboard') }}"
+                                        
+                                   @endif
+                              
+                                    @endguest
+                                     
+                                     ><span class="item_outer"><span class="item_text">Post Job</span><span class="plus"></span><i class="eltdf-menu-arrow fa fa-angle-down"></i></span></a>
                                 </li>
                             </ul>
                         </nav>

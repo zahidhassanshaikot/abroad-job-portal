@@ -127,11 +127,15 @@ class JobSeekerController extends Controller
     public function appllyNow($id){
         if(Auth::check()){
             // return $id;
+            if(Auth::user()->hasRole('Job Seeker')){
             $obj_job_app=new JobApplication();
             $obj_job_app->user_id=Auth::user()->id;
             $obj_job_app->job_post_id=$id;
             $obj_job_app->save();
             return redirect()->back()->with('message','Applyed Succefully.');
+            }else{
+                return redirect()->back()->with('error_m','You are not a job seeker.');
+            }
 
         }else{
             return redirect()->back()->with('error_m','Please Login For Apply.');

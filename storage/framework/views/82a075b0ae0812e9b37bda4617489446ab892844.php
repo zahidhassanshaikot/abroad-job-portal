@@ -22,7 +22,23 @@
                                 <a href="<?php echo e(route('jobs')); ?>" class=""><span class="item_outer"><span class="item_text">Jobs</span><i class="eltdf-menu-arrow fa fa-angle-down"></i></span></a>
                             </li>
                             <li id="nav-menu-item-17" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children  has_sub wide">
-                                <a href="#" class="" data-toggle="modal" data-target="#postjob"><span class="item_outer"><span class="item_text">Post Jobs</span><i class="eltdf-menu-arrow fa fa-angle-down"></i></span></a>
+                                <a 
+                                <?php if(auth()->guard()->guest()): ?>
+                                 href="#" class="" data-toggle="modal" data-target="#postjob"
+                                 <?php else: ?>
+                                 <?php if(Auth::user()->hasRole('Job Seeker')): ?> 
+                                    
+                                    href="<?php echo e(route('job-seeker-dashboard')); ?>"
+                                <?php elseif(Auth::user()->hasRole('Employer Seeker')): ?>
+                          
+                                href="<?php echo e(route('company-dashboard')); ?>" 
+                                <?php elseif(Auth::user()->hasRole('Admin')): ?>
+                                href="<?php echo e(route('company-dashboard')); ?>"
+                                     
+                                <?php endif; ?>
+                           
+                                 <?php endif; ?>
+                                 ><span class="item_outer"><span class="item_text">Post Jobs</span><i class="eltdf-menu-arrow fa fa-angle-down"></i></span></a>
                             </li>
                         </ul>
                     </nav>
@@ -74,7 +90,24 @@
                                     <a href="<?php echo e(route('jobs')); ?>" class=""><span class="item_outer"><span class="item_text">Jobs</span><span class="plus"></span><i class="eltdf-menu-arrow fa fa-angle-down"></i></span></a>
                                 </li>
                                 <li id="sticky-nav-menu-item-19" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children  has_sub narrow">
-                                    <a href="#" class=""><span class="item_outer"><span class="item_text">Post Job</span><span class="plus"></span><i class="eltdf-menu-arrow fa fa-angle-down"></i></span></a>
+                                    <a
+                                    <?php if(auth()->guard()->guest()): ?>
+                                    href="#" class="" data-toggle="modal" data-target="#postjob"
+                                    <?php else: ?>
+                                    <?php if(Auth::user()->hasRole('Job Seeker')): ?> 
+                                       
+                                       href="<?php echo e(route('job-seeker-dashboard')); ?>"
+                                   <?php elseif(Auth::user()->hasRole('Employer Seeker')): ?>
+                             
+                                   href="<?php echo e(route('company-dashboard')); ?>" 
+                                   <?php elseif(Auth::user()->hasRole('Admin')): ?>
+                                   href="<?php echo e(route('company-dashboard')); ?>"
+                                        
+                                   <?php endif; ?>
+                              
+                                    <?php endif; ?>
+                                     
+                                     ><span class="item_outer"><span class="item_text">Post Job</span><span class="plus"></span><i class="eltdf-menu-arrow fa fa-angle-down"></i></span></a>
                                 </li>
                             </ul>
                         </nav>
