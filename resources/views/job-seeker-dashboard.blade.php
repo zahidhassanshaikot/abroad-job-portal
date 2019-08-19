@@ -14,7 +14,21 @@
       <div class="contents-inner">
         <div class="row">
 
+
+
+
           <div class="col-md-12">
+              @if(Session::get('message'))
+              <div class="alert alert-success" id="message">
+                <h4 class=" text-center text-success"> {{ Session::get('message') }}</h4>
+              </div>
+            @endif
+            @if(Session::get('error_m'))
+              <div class="alert alert-danger" id="message">
+                <h4 class=" text-center text-danger"> {{ Session::get('error_m') }}</h4>
+              </div>
+            @endif
+
             <div class="section-content">
               <div class="content-head">
                 <h4 class="content-title">Add Your Information</h4>

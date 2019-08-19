@@ -24,8 +24,12 @@ class JobSeekerController extends Controller
     }
     public function jobSeekerProfile(){
         $user_id=Auth::user()->id;
+        $profile=jobSeekerProfile::where('user_id',Auth::user()->id)->first();
+    if(!empty($profile)){
         $seeker_profile=jobSeekerProfile::where('user_id',$user_id)->first();
-
+    }else{
+        return redirect()->back()->with('error_m','Please complete your profile.');
+    }
         return view('job-seeker-profile',['seeker_profile'=>$seeker_profile]);
     }
     public function saveJobSeekerProfileInfo(Request $request){
@@ -128,10 +132,15 @@ class JobSeekerController extends Controller
         if(Auth::check()){
             // return $id;
             if(Auth::user()->hasRole('Job Seeker')){
+$profile=jobSeekerProfile::where('user_id',Auth::user()->id)->first();
+if(!empty($profile)){
             $obj_job_app=new JobApplication();
             $obj_job_app->user_id=Auth::user()->id;
             $obj_job_app->job_post_id=$id;
             $obj_job_app->save();
+        }else{
+            return redirect()->back()->with('error_m','Please complete your profile.');
+        }
             return redirect()->back()->with('message','Applyed Succefully.');
             }else{
                 return redirect()->back()->with('error_m','You are not a job seeker.');
