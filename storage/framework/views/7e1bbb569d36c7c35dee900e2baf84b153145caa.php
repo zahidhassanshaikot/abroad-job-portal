@@ -6,8 +6,8 @@
   <title>Candidates Short List</title>
 
 
-    @include('layouts/header/dashboard-header')
-    {{-- @include('layouts/sidebar/admin-sidebar2') --}}
+    <?php echo $__env->make('layouts/header/dashboard-header', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    
 
     <div class="content-wrapper container-fluid">
       <aside class="left-panel">
@@ -15,45 +15,41 @@
           <ul class="navbar-nav">
   
             <li class="nav-item dropdown active">
-              <a class="nav-link" href="{{ route('company-dashboard') }}">
+              <a class="nav-link" href="<?php echo e(route('company-dashboard')); ?>">
                  <i class="fa fa-tachometer"></i><span class="menu-title">Dashboard</span>
               </a>
             </li>
   
             </li>
-            {{-- <li class="nav-item">
-              <a class="nav-link" href="total-job.php">
-                <i class="fa fa-hashtag"></i> <span class="menu-title">Total Jobs</span>
-              </a>
-            </li> --}}
+            
   
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('candidates-list',['id'=> $job_post_id ]) }}">
+              <a class="nav-link" href="<?php echo e(route('candidates-list',['id'=> $job_post_id ])); ?>">
                 <i class="fa fa-product-hunt"></i> <span class="menu-title">Candidate List</span>
               </a>
             </li>
   
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('selected-candidates-list',['id'=> $job_post_id ]) }}">
+              <a class="nav-link" href="<?php echo e(route('selected-candidates-list',['id'=> $job_post_id ])); ?>">
                 <i class="fa fa-product-hunt"></i> <span class="menu-title">Selected List</span> 
               </a>
             </li>
   
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('shortlist-candidates-list',['id'=> $job_post_id ]) }}">
+              <a class="nav-link" href="<?php echo e(route('shortlist-candidates-list',['id'=> $job_post_id ])); ?>">
                 <i class="fa fa-list-ul"></i> <span class="menu-title">Short List</span>
               </a>
             </li>
   
             <li class="nav-item dropdown">
-              <a class="nav-link" href="{{ route('pending-candidates-list',['id'=> $job_post_id ]) }}">
+              <a class="nav-link" href="<?php echo e(route('pending-candidates-list',['id'=> $job_post_id ])); ?>">
                 <i class="fa fa-list-ul"></i> <span class="menu-title">Pending Candidates Lists</span>
               </a>
             </li>
   
             <li class="nav-item dropdown">
-              <a class="nav-link" href="{{ route('eliminated-candidates-list',['id'=> $job_post_id ]) }}">
+              <a class="nav-link" href="<?php echo e(route('eliminated-candidates-list',['id'=> $job_post_id ])); ?>">
                 <i class="fa fa-list-ul"></i> <span class="menu-title">Eliminated Candidates List</span>
               </a>
             </li>
@@ -78,11 +74,11 @@
     <div class="dashboard-contents">
       <div class="contents-inner">
 
-          @if(Session::get('message'))
+          <?php if(Session::get('message')): ?>
           <div class="alert alert-success" id="message">
-              <h4 class=" text-center text-success"> {{ Session::get('message') }}</h4>
+              <h4 class=" text-center text-success"> <?php echo e(Session::get('message')); ?></h4>
           </div>
-      @endif
+      <?php endif; ?>
         <div class="row">
           <div class="col-12">
             <div class="section-content">
@@ -105,45 +101,45 @@
                   </thead>
 
                   <tbody>
-                    @foreach ($obj_jobPost as $item)
+                    <?php $__currentLoopData = $obj_jobPost; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         
                   
                     <tr>
-                      <td>{{ $item->id }}</td>
+                      <td><?php echo e($item->id); ?></td>
                       <td>
                         <div class="name">
-                        <h6>Name:</h6><p>{{ $item->fname }} {{ $item->lname }}</p>
-                          <h6>Father Name:</h6><p>{{ $item->father_name }}</p>
+                        <h6>Name:</h6><p><?php echo e($item->fname); ?> <?php echo e($item->lname); ?></p>
+                          <h6>Father Name:</h6><p><?php echo e($item->father_name); ?></p>
                         </div>
                       </td>
                       <td>
                         <div class="pro-image">
-                        <img src="{{ asset($item->image) }}" height="70px" width="70px" alt="">
+                        <img src="<?php echo e(asset($item->image)); ?>" height="70px" width="70px" alt="">
                         </div>
                       </td>
                       <td>
                           <div><h6>Present Address</h6>
                             
-                            <p>{{ $item->present_address }}</p>
+                            <p><?php echo e($item->present_address); ?></p>
                           </div>
                           <div><h6>Parmanent Address</h6>
-                            <p>{{ $item->permanent_address }}</p>
+                            <p><?php echo e($item->permanent_address); ?></p>
                           </div>
                       </td>
-                      <td>{{ $item->contact_no }}</td>
-                      <td>{{ $item->status }}</td>
+                      <td><?php echo e($item->contact_no); ?></td>
+                      <td><?php echo e($item->status); ?></td>
                       <td class="action">
                         <ul>
-                          <li><a href="{{ route('candidate-profile',['id'=>$item->user_id,'job_post_id'=>$job_post_id]) }}" target="blank" class="profile">View Profile</a></li>
-                          <li><a href="{{ route('select-for-job',['id'=> $job_post_id ]) }}" class="success">Select for job</a></li>
-                          <li><a href="{{ route('shortlist-for-job',['id'=> $job_post_id ]) }}" class="success">ShortList for job</a></li>
-                          <li><a href="{{ route('pending-for-job',['id'=> $job_post_id ]) }}" class="warning">Pending for job</a></li>
-                          <li><a href="{{ route('eliminated-for-job',['id'=> $job_post_id ]) }}" class="danger">Eliminated for job</a></li>
-                          <li><a href="{{ route('message',['job_post_id'=> $job_post_id,'reciver_id'=> $item->id  ])}}" class="message">Send Message</a></li>
+                          <li><a href="<?php echo e(route('candidate-profile',['id'=>$item->user_id,'job_post_id'=>$job_post_id])); ?>" target="blank" class="profile">View Profile</a></li>
+                          <li><a href="<?php echo e(route('select-for-job',['id'=> $job_post_id ])); ?>" class="success">Select for job</a></li>
+                          <li><a href="<?php echo e(route('shortlist-for-job',['id'=> $job_post_id ])); ?>" class="success">ShortList for job</a></li>
+                          <li><a href="<?php echo e(route('pending-for-job',['id'=> $job_post_id ])); ?>" class="warning">Pending for job</a></li>
+                          <li><a href="<?php echo e(route('eliminated-for-job',['id'=> $job_post_id ])); ?>" class="danger">Eliminated for job</a></li>
+                          <li><a href="<?php echo e(route('message',['job_post_id'=> $job_post_id,'reciver_id'=> $item->id  ])); ?>" class="message">Send Message</a></li>
                         </ul>
                       </td>
                     </tr>
-                    @endforeach
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                   </tbody>
 
                 </table>
@@ -155,15 +151,15 @@
       </div><!-- /.contents-inner -->
 
    
-      @include('layouts/footer/footer')
+      <?php echo $__env->make('layouts/footer/footer', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
     
 
-  <script src="{{asset('design')}}/assets/js/jquery-3.2.1.slim.min.js"></script>
-  <script src="{{asset('design')}}/assets/js/plugins.js"></script>
-  <script src="{{asset('design')}}/assets/js/tables/jquery.dataTables.min.js"></script>
-  <script src="{{asset('design')}}/assets/js/tables/dataTables.bootstrap4.min.js"></script>
+  <script src="<?php echo e(asset('design')); ?>/assets/js/jquery-3.2.1.slim.min.js"></script>
+  <script src="<?php echo e(asset('design')); ?>/assets/js/plugins.js"></script>
+  <script src="<?php echo e(asset('design')); ?>/assets/js/tables/jquery.dataTables.min.js"></script>
+  <script src="<?php echo e(asset('design')); ?>/assets/js/tables/dataTables.bootstrap4.min.js"></script>
 
-  <script src="{{asset('design')}}/assets/js/main.js"></script>
+  <script src="<?php echo e(asset('design')); ?>/assets/js/main.js"></script>
 
   <script>
     $(document).ready(function() {

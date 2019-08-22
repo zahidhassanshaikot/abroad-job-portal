@@ -47,7 +47,7 @@ Route::group(['middleware' => 'role:Employer Seeker|Admin'], function () {
         Route::get('message/{job_post_id}/{reciver_id}', 'CompanyController@message')->name('message');
         Route::post('send-message', 'CompanyController@sendMessage')->name('send-message');
         
-        Route::get('candidate-profile/{id}', 'CompanyController@candidateProfile')->name('candidate-profile');
+        Route::get('candidate-profile/{id}/{job_post_id}', 'CompanyController@candidateProfile')->name('candidate-profile');
         Route::get('select-for-job/{id}', 'CompanyController@SelectForJob')->name('select-for-job');
         Route::get('pending-for-job/{id}', 'CompanyController@pendingForJob')->name('pending-for-job');
         Route::get('eliminated-for-job/{id}', 'CompanyController@eliminatedForJob')->name('eliminated-for-job');

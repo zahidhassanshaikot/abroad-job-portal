@@ -238,13 +238,13 @@ class CompanyController extends Controller
 
     }
 
-    public function candidateProfile($id){
+    public function candidateProfile($id,$job_post_id){
  
-        $seeker_profile=jobSeekerProfile::where('job_seeker_profile.id', $id)
+        $seeker_profile=jobSeekerProfile::where('job_seeker_profile.user_id', $id)
         ->join('users','users.id','=','job_seeker_profile.user_id')
         ->select('job_seeker_profile.*','users.email')->first();
 
-        return view('candidate-profile',['seeker_profile'=>$seeker_profile]);
+        return view('candidate-profile',['seeker_profile'=>$seeker_profile,'job_post_id'=>$job_post_id]);
         
     }
     public function companyList(){

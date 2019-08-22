@@ -84,7 +84,7 @@
                         <div class="form-group profile-form">
                           <label class="form-control-label">National ID</label>
                           <div class="input-group">
-                            <input class="form-control" @if(!empty($seeker_profile)) value="{{$seeker_profile->nid}}" name="nid" @endif  type="number" placeholder="National ID">
+                            <input class="form-control" @if(!empty($seeker_profile)) value="{{$seeker_profile->nid}}"  @endif name="nid" type="number" placeholder="National ID">
                           </div>
                         </div>
                       </div>
