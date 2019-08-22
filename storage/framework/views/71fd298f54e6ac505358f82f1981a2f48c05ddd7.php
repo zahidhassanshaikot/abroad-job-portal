@@ -9,7 +9,6 @@
   
 
 
-
 <div class="content-wrapper container-fluid">
   <aside class="left-panel">
     <nav class="navbar">
